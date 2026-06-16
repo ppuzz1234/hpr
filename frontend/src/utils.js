@@ -7,7 +7,7 @@ export const NAV = [
   { group: "게이트웨이" },
   { to: "/", ic: "◈", label: "Private Room", end: true },
   { group: "자산이전 여정" },
-  { to: "/step1", ic: "①", label: "진단 · FCF 시뮬레이터", step: "STEP 1" },
+  { to: "/step1", ic: "①", label: "진단 · 시뮬레이터", step: "STEP 1" },
   { to: "/step2", ic: "②", label: "비히클 설립", step: "STEP 2" },
   { to: "/step3", ic: "③", label: "한화 디지털 딜룸", step: "STEP 3" },
   { group: "코어 모듈" },

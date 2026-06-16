@@ -31,9 +31,9 @@ export const companies = {
       keywords: ["레저·골프", "부동산·리조트", "ESG 인프라", "헬스케어"],
       comment:
         "<b style='color:var(--txt)'>신고려관광㈜</b>은 영업이익률 20%대의 초우량 컨트리클럽이지만, " +
-        "<b style='color:var(--txt)'>미처분이익잉여금 505억·단기금융상품 340억</b>이 연 3.2% 저수익 예치에 머물고 " +
-        "투자자산은 250만원에 불과합니다. 잉여현금의 핵심 <b style='color:var(--mint)'>250억을 가족 LLC를 그릇으로 " +
-        "대체투자로 이전</b>하면 연 16억+의 기회비용을 회수할 수 있습니다.",
+        "<b style='color:var(--txt)'>미처분이익잉여금 505억·단기금융상품 340억</b>이 연 3.2% 저수익 예치에 머물러 있습니다. " +
+        "잉여현금의 핵심 <b style='color:var(--mint)'>250억을 LLC를 그릇으로 " +
+        "대체투자로 이전</b>하면 연 16억+@의 기회비용을 회수할 수 있습니다.",
       summary: [
         { label: "영업이익", value: "40.4억", delta: "영업이익률 20.7%", deltaCls: "up" },
         { label: "미처분이익잉여금", value: "505억", valueCls: "mint", delta: "단기금융상품 340억" },

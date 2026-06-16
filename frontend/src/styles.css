@@ -79,6 +79,7 @@ body {
 .nav-item .step-no {
   margin-left: auto; font-size: 10px; color: var(--txt-3);
   background: var(--panel-2); padding: 1px 7px; border-radius: 20px;
+  flex-shrink: 0; white-space: nowrap;
 }
 
 .sidebar-footer { margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding-top: 16px; }
@@ -146,7 +147,7 @@ body {
 .view-head { margin-bottom: 26px; }
 .view-eyebrow { font-size: 11px; letter-spacing: 2px; color: var(--mint); text-transform: uppercase; font-weight: 700; }
 .view-title { font-size: 27px; font-weight: 800; letter-spacing: -.5px; margin-top: 8px; }
-.view-sub { font-size: 13.5px; color: var(--txt-2); margin-top: 8px; line-height: 1.65; max-width: 720px; }
+.view-sub { font-size: 13.5px; color: var(--txt-2); margin-top: 8px; line-height: 1.65; }
 
 /* ---------------- Cards / grid ---------------- */
 .grid { display: grid; gap: 18px; }
@@ -158,12 +159,16 @@ body {
 .card {
   background: var(--panel); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 20px;
+  display: flex;             /* 1. 카드를 Flex 컨테이너로 설정 */
+  flex-direction: column;    /* 2. 자식 요소들을 수직으로 배치 */
 }
 .card.glow { box-shadow: var(--shadow); }
 .card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .card-title { font-size: 14px; font-weight: 700; }
 .card-title small { display: block; font-size: 11px; color: var(--txt-3); font-weight: 400; margin-top: 3px; }
 .card-tag { font-size: 10.5px; color: var(--txt-2); background: var(--panel-2); padding: 3px 10px; border-radius: 20px; border: 1px solid var(--line); }
+.card > *:not(button) {flex-grow: 0; }
+.card button {margin-top: auto; }
 
 /* metric tiles */
 .metric { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px; }
@@ -311,6 +316,10 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
 .toast .t-head .ic { font-size: 16px; }
 .toast .t-body { font-size: 12.5px; color: var(--txt-2); margin-top: 9px; line-height: 1.6; }
 .toast .t-act { display: flex; gap: 8px; margin-top: 13px; }
+
+.toast button:hover { color: var(--txt) !important;}
+
+
 @keyframes slideIn { from { transform: translateX(40px); opacity: 0; } to { transform: none; opacity: 1; } }
 
 /* modal */

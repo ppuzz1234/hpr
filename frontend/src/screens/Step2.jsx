@@ -55,7 +55,7 @@ export default function Step2() {
         </div>
       </div>
       <div className="grid g-3">
-        {/* ⚡ [새로 추가] CVC 설립 컨설팅 카드 */}
+        {/* CVC 설립 컨설팅 카드 */}
         <div className="card">
           <div className="card-head">
             <div className="card-title">🏢 CVC 설립 컨설팅 <small>기업형 벤처캐피탈 인프라</small></div>
@@ -101,14 +101,14 @@ export default function Step2() {
         {/* Family LLC */}
         <div className="card">
           <div className="card-head">
-            <div className="card-title">🏗 가족 유한회사(Family LLC) 빌더 <small>FCF 메인 주머니</small></div>
+            <div className="card-title">🏗 유한회사(LLC) 빌더 <small>FCF 메인 주머니</small></div>
             <span className="card-tag">{vehicle.llc ? "설립완료" : "미설립"}</span>
           </div>
           <div className={"build-step" + (vehicle.llc ? " done" : "")}><div className="no">1</div><div><h5>투자전문 유한회사 정관 생성</h5><p>CFO 훼손 없이 FCF 수령 구조</p></div></div>
           <div className={"build-step" + (vehicle.llc ? " done" : "")}><div className="no">2</div><div><h5>메인법인 FCF 연동 (과세이연)</h5><p>배당 대신 투자형 자금이동</p><div className="meta">연 {won(880)} 수혈 한도</div></div></div>
           <div className={"build-step" + (vehicle.llc ? " done" : "")}><div className="no">3</div><div><h5>대체투자 출자 게이트 개방</h5><p>STEP 3 딜룸 자본집행 연결</p></div></div>
           <button className={"btn btn-block mt-16 " + (vehicle.llc ? "btn-line" : "btn-primary")} onClick={buildLLC} disabled={vehicle.llc}>
-            {vehicle.llc ? "✓ LLC 설립 완료 — 딜룸 게이트 개방됨" : "Family LLC 디지털 설립"}
+            {vehicle.llc ? "✓ LLC 설립 완료 — 딜룸 게이트 개방됨" : "LLC 디지털 설립"}
           </button>
         </div>
       </div>

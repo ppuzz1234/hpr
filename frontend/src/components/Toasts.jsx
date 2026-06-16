@@ -6,6 +6,15 @@ export default function Toasts() {
     <div className="toast-wrap">
       {toasts.map((t) => (
         <div key={t.id} className={"toast" + (t.warn ? " warn" : "")}>
+          <button 
+            onClick={() => dismiss(t.id)}
+            style={{
+              position: 'absolute', top: '12px', right: '12px',
+              background: 'transparent', border: 'none', color: 'var(--txt-3)',
+              cursor: 'pointer', fontSize: '16px', lineHeight: '1'
+            }}
+          >✕
+          </button>
           <div className="t-head">
             <span className="ic">{t.icon || "◆"}</span>
             {t.title}

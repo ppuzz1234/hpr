@@ -29,7 +29,7 @@ export function AppProvider({ children }) {
     (opt) => {
       const id = ++_id;
       setToasts((t) => [...t, { id, ...opt }]);
-      const ttl = opt.actions && opt.actions.length ? 13000 : 6000;
+      const ttl = opt.actions && opt.actions.length ? 4000 : 2000;
       setTimeout(() => dismiss(id), ttl);
       return id;
     },
