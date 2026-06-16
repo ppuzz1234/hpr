@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback } from "react";
+import { DB, defaultCompanyId } from "../data.js";
 
 const AppContext = createContext(null);
 export const useApp = () => useContext(AppContext);
@@ -6,8 +7,18 @@ export const useApp = () => useContext(AppContext);
 let _id = 0;
 
 export function AppProvider({ children }) {
+  // ----- 선택된 진단 대상 회사 (우측 상단 스위처) -----
+  const [companyId, setCompanyId] = useState(defaultCompanyId);
+  const company = DB.companies[companyId];
+
   // ----- 여정 상태 (네비게이션 간 유지) -----
   const [diag, setDiag] = useState({ done: false, advisor: null });
+
+  // 회사 전환 시 진단 상태 초기화 (새 회사로 재진단)
+  const switchCompany = useCallback((id) => {
+    setCompanyId(id);
+    setDiag({ done: false, advisor: null });
+  }, []);
   const [vehicle, setVehicle] = useState({ trust: false, llc: false });
   const [commits, setCommits] = useState({}); // dealId -> 억
 
@@ -31,6 +42,7 @@ export function AppProvider({ children }) {
   const closeModal = useCallback(() => setModal(null), []);
 
   const value = {
+    companyId, company, switchCompany,
     diag, setDiag,
     vehicle, setVehicle,
     commits, setCommits,

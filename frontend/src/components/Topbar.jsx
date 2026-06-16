@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { STEPS } from "../utils.js";
+import { DB } from "../data.js";
 import { useApp } from "../context/AppContext.jsx";
 
 export default function Topbar({ onHamburger }) {
   const loc = useLocation();
-  const { toast } = useApp();
+  const { company, companyId, switchCompany } = useApp();
+  const [menuOpen, setMenuOpen] = useState(false);
   const idx = STEPS.findIndex((s) => s.to === loc.pathname);
 
   return (
@@ -45,15 +48,37 @@ export default function Topbar({ onHamburger }) {
           <span>⌕</span>
           <input placeholder="딜·자산·법인 검색" />
         </div>
-        <div
-          className="corp-switch"
-          onClick={() =>
-            toast({ title: "법인 전환", icon: "⇄", body: "데모 환경에서는 대성홀딩스(주) 단일 법인만 활성화되어 있습니다." })
-          }
-        >
-          <span className="corp-dot" />
-          <span className="corp-name">대성홀딩스(주)</span>
-          <span className="caret">▾</span>
+        <div className="corp-wrap">
+          <div className="corp-switch" onClick={() => setMenuOpen((o) => !o)}>
+            <span className="corp-dot" />
+            <span className="corp-name">{company.name}</span>
+            <span className="caret">▾</span>
+          </div>
+          {menuOpen && (
+            <>
+              <div className="corp-menu-bg" onClick={() => setMenuOpen(false)} />
+              <div className="corp-menu">
+                <div className="corp-menu-label">진단 대상 법인</div>
+                {DB.companyOrder.map((id) => {
+                  const c = DB.companies[id];
+                  return (
+                    <div
+                      key={id}
+                      className={"corp-menu-item" + (id === companyId ? " active" : "")}
+                      onClick={() => { switchCompany(id); setMenuOpen(false); }}
+                    >
+                      <span className="corp-dot" />
+                      <div className="corp-menu-text">
+                        <strong>{c.name}</strong>
+                        <span>{c.sector}</span>
+                      </div>
+                      {id === companyId && <span className="corp-check">✓</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </header>

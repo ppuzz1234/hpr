@@ -1,19 +1,18 @@
 import { useState } from "react";
-import { DB } from "../data.js";
 import { won } from "../utils.js";
 import { useApp } from "../context/AppContext.jsx";
 import { Gauge, Area } from "../components/Charts.jsx";
 
 export default function Dual() {
-  const { toast } = useApp();
+  const { toast, company } = useApp();
   const [mv, setMv] = useState(40); // FCF 이동 비율
   const [dv, setDv] = useState(20); // 배당 성향
   const [sv, setSv] = useState(31); // 승계 지분 이전율
 
   // 토이 모델: 배당↑ → 세부담↑, 이동/이전↑ → 세부담↓
-  const tax = Math.max(18, Math.round(41.2 + dv * 0.18 - mv * 0.09 - sv * 0.07));
-  const moved = Math.round((DB.corp.main.fcf * mv) / 100);
-  const saved = Math.round(((41.2 - tax) / 100) * DB.corp.family.networth * 0.04);
+  const tax = Math.max(18, Math.round(company.family.effTaxRate + dv * 0.18 - mv * 0.09 - sv * 0.07));
+  const moved = Math.round((company.main.fcf * mv) / 100);
+  const saved = Math.round(((company.family.effTaxRate - tax) / 100) * company.family.networth * 0.04);
   const gaugeColor = tax > 35 ? "#FF6B6B" : tax > 25 ? "#F4B740" : "#34E0C4";
 
   const golden = () =>
@@ -29,7 +28,7 @@ export default function Dual() {
   return (
     <>
       <div className="view-head">
-        <div className="view-eyebrow">코어 모듈 · 승계 구조화</div>
+        <div className="view-eyebrow">코어 모듈 · 승계 구조화 · {company.name}</div>
         <div className="view-title">메인-승계 법인 듀얼 구조 시뮬레이터</div>
         <div className="view-sub">메인 법인과 승계 법인의 재무·주주 데이터를 연동해, FCF 이동·배당정책 변화에 따른 <b style={{ color: "var(--mint)" }}>가문 전체 실효세부담률</b>을 실시간 시각화합니다.</div>
       </div>
@@ -53,9 +52,9 @@ export default function Dual() {
           <div className="card-title">가문 실효세부담률</div>
           <div style={{ textAlign: "center", marginTop: 10 }}><Gauge value={tax} color={gaugeColor} /></div>
           <div className="divider" />
-          <div className="row between"><span className="muted" style={{ fontSize: 12.5 }}>메인 법인</span><b>{won(DB.corp.main.revenue)} 매출</b></div>
-          <div className="row between mt-8"><span className="muted" style={{ fontSize: 12.5 }}>승계 법인</span><b>{DB.corp.succ.name}</b></div>
-          <div className="row between mt-8"><span className="muted" style={{ fontSize: 12.5 }}>가문 순자산</span><b style={{ color: "var(--mint)" }}>{won(DB.corp.family.networth)}</b></div>
+          <div className="row between"><span className="muted" style={{ fontSize: 12.5 }}>메인 법인</span><b>{won(company.main.revenue)} 매출</b></div>
+          <div className="row between mt-8"><span className="muted" style={{ fontSize: 12.5 }}>승계 법인</span><b>{company.succ.name}</b></div>
+          <div className="row between mt-8"><span className="muted" style={{ fontSize: 12.5 }}>가문 순자산</span><b style={{ color: "var(--mint)" }}>{won(company.family.networth)}</b></div>
         </div>
       </div>
 

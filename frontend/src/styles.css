@@ -89,7 +89,9 @@ body {
 }
 .tier-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 10px var(--mint); }
 .advisor-mini { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 10px; background: var(--panel); }
-.advisor-mini .avatar { width: 32px; height: 32px; border-radius: 9px; background: var(--grad-mint); color:#04201b; display: grid; place-items: center; font-weight: 800; font-size: 11px; }
+.advisor-mini .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--grad-mint); color:#04201b; display: grid; place-items: center; font-weight: 800; font-size: 11px; overflow: hidden; flex-shrink: 0; }
+/* 어드바이저 원형 사진 (public/advisors/*.jpg 추가 시 표시) */
+.advisor-card .face img, .advisor-mini .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
 .advisor-mini strong { display: block; font-size: 12px; }
 .advisor-mini span { font-size: 10.5px; color: var(--green); }
 
@@ -119,8 +121,25 @@ body {
 .search input { background: none; border: none; outline: none; color: var(--txt); font-size: 12.5px; width: 150px; font-family: inherit; }
 .corp-switch { display: flex; align-items: center; gap: 9px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 7px 13px; cursor: pointer; font-size: 12.5px; font-weight: 600; }
 .corp-switch:hover { border-color: var(--mint-dim); }
-.corp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); }
+.corp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); flex-shrink: 0; }
 .corp-switch .caret { color: var(--txt-3); font-size: 10px; }
+
+/* 법인 스위처 드롭다운 */
+.corp-wrap { position: relative; }
+.corp-menu-bg { position: fixed; inset: 0; z-index: 90; }
+.corp-menu {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 100; width: 268px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: var(--shadow); padding: 8px; animation: pop .18s ease;
+}
+.corp-menu-label { font-size: 10px; color: var(--txt-3); letter-spacing: 1px; text-transform: uppercase; padding: 8px 10px 6px; }
+.corp-menu-item { display: flex; align-items: center; gap: 11px; padding: 11px 10px; border-radius: 10px; cursor: pointer; transition: .14s; }
+.corp-menu-item:hover { background: var(--panel-2); }
+.corp-menu-item.active { background: linear-gradient(90deg, rgba(52,224,196,.12), transparent); }
+.corp-menu-text { display: flex; flex-direction: column; line-height: 1.25; }
+.corp-menu-text strong { font-size: 13px; }
+.corp-menu-text span { font-size: 11px; color: var(--txt-2); }
+.corp-check { margin-left: auto; color: var(--mint); font-weight: 800; }
 
 /* ---------------- View / scroll area ---------------- */
 .view { flex: 1; overflow-y: auto; padding: 30px 34px 60px; }
@@ -214,7 +233,7 @@ body {
 }
 .advisor-card:hover { border-color: var(--mint); transform: translateY(-3px); }
 .advisor-card.sel { border-color: var(--mint); box-shadow: 0 0 0 3px rgba(52,224,196,.12); }
-.advisor-card .face { width: 58px; height: 58px; border-radius: 14px; display: grid; place-items: center; font-weight: 800; font-size: 20px; color: #04201b; }
+.advisor-card .face { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 21px; color: #04201b; overflow: hidden; box-shadow: 0 0 0 3px rgba(255,255,255,.06); }
 .advisor-card h4 { font-size: 16px; margin-top: 14px; }
 .advisor-card .role { font-size: 12px; color: var(--mint); margin-top: 3px; }
 .advisor-card .style { font-size: 12px; color: var(--txt-2); margin-top: 10px; line-height: 1.6; }

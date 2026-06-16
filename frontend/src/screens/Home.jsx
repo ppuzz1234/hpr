@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { DB } from "../data.js";
 import { won } from "../utils.js";
+import { useApp } from "../context/AppContext.jsx";
 
 export default function Home() {
   const navigate = useNavigate();
-  const d = DB.diag;
+  const { company } = useApp();
+  const d = company.diag;
 
   const JourneyCard = ({ no, tag, title, sub, to }) => (
     <div className="card" style={{ cursor: "pointer" }} onClick={() => navigate(to)}>
@@ -41,10 +43,14 @@ export default function Home() {
         <JourneyCard no="③" tag="STEP 3 · 딜룸 집행" title="Tranching 공급망 · 클럽딜 · Fund of Funds" sub="한화가 선인수한 기관급 대체자산을 폐쇄 딜룸에서 공동집행" to="/step3" />
       </div>
 
+      <div className="row between mt-32" style={{ marginBottom: -10 }}>
+        <div className="view-eyebrow">선택 법인 · {company.name}</div>
+        <span className="tiny">{company.sector}</span>
+      </div>
       <div className="grid g-4 mt-24">
-        <div className="metric"><div className="label">유휴자본 기회비용</div><div className="value down">-{d.oppCost}억<small style={{ fontSize: 13, color: "var(--txt-3)" }}>/년</small></div><div className="delta down">ROIC&lt;WACC 정체</div></div>
+        <div className="metric"><div className="label">유휴자본 기회비용</div><div className="value down">-{d.oppCost}억<small style={{ fontSize: 13, color: "var(--txt-3)" }}>/년</small></div><div className="delta down">유휴현금 정체</div></div>
         <div className="metric"><div className="label">안전 이전 가능액</div><div className="value mint">{won(d.deployable)}</div><div className="delta up">CFO 훼손 0%</div></div>
-        <div className="metric"><div className="label">가문 실효세부담률</div><div className="value">{DB.corp.family.effTaxRate}%</div><div className="delta up">▼ 듀얼구조 최적화 여지</div></div>
+        <div className="metric"><div className="label">가문 실효세부담률</div><div className="value">{company.family.effTaxRate}%</div><div className="delta up">▼ 듀얼구조 최적화 여지</div></div>
         <div className="metric"><div className="label">진단 스코어</div><div className="value mint">{d.score}</div><div className="delta">자산이전 준비도</div></div>
       </div>
     </>
