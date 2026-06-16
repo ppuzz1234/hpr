@@ -24,6 +24,16 @@ export default function Step2() {
       actions: [{ label: "딜룸 진입", primary: true, fn: () => navigate("/step3") }],
     });
   };
+
+  //
+  const buildCVC = () => {
+    setVehicle((v) => ({ ...v, cvc: true }));
+    toast({
+      title: "CVC 설립 컨설팅 설계 완료",
+      icon: "🏢",
+      body: "기업형 벤처캐피탈(CVC) 설립을 위한 지배구조 및 투자 전략 인프라 매칭이 완료되었습니다.",
+    });
+  };
   const rebalance = () =>
     toast({
       warn: true, title: "방어 리밸런싱 팝업", icon: "⚠",
@@ -44,8 +54,19 @@ export default function Step2() {
           {adv && <> <b style={{ color: "var(--mint)" }}>{adv.name}</b>의 전략 기조가 반영되었습니다.</>}
         </div>
       </div>
-
-      <div className="grid g-2">
+      <div className="grid g-3">
+        {/* ⚡ [새로 추가] CVC 설립 컨설팅 카드 */}
+        <div className="card">
+          <div className="card-head">
+            <div className="card-title">🏢 CVC 설립 컨설팅 <small>기업형 벤처캐피탈 인프라</small></div>
+            <span className="card-tag">{vehicle.cvc ? "설계완료" : "미설계"}</span>
+          </div>
+          <div className={"build-step" + (vehicle.cvc ? " done" : "")}><div className="no">1</div><div><h5>CVC 지배구조 시뮬레이션</h5><p>공정거래법 요건 충족 및 출자 비율 최적화</p></div></div>
+          <div className={"build-step" + (vehicle.cvc ? " done" : "")}><div className="no">2</div><div><h5>펀드 결성 및 운용 전략 수립</h5><p>주요 대기업 및 가문 자본 연동 게이트 구축</p></div></div>
+          <button className={"btn btn-block mt-16 " + (vehicle.cvc ? "btn-line" : "btn-primary")} onClick={buildCVC} disabled={vehicle.cvc}>
+            {vehicle.cvc ? "✓ CVC 컨설팅 완료" : "CVC 설립 컨설팅 시작"}
+          </button>
+        </div>
         {/* Digital Trust */}
         <div className="card">
           <div className="card-head">
