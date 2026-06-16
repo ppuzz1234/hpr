@@ -92,7 +92,7 @@ export const DB = {
   advisors: [
     {
       id: "cathie", name: "Cathie Wood", role: "ARK Invest · CEO",
-      photo: "/advisors/cathie.jpg",
+      photo: "/advisors/cathie.png",
       face: "linear-gradient(135deg,#34E0C4,#1f9c8a)", initials: "CW",
       style: "파괴적 혁신(Disruptive Innovation) 집중. 고성장 기술주·테마형 장기 베팅을 선호합니다.",
       opening: "막대한 유휴현금이 3% 예치에 묶여 가치가 침식되고 있습니다. 저라면 이 유휴자본의 상당분을 UAM·에너지저장·게놈 등 5년 CAGR 30%+ 혁신 테마에 분산 배치하겠습니다. 단기 변동성은 감내하되, 가족 LLC를 그릇으로 써서 변동성을 가문 단위로 흡수하세요.",
@@ -104,7 +104,7 @@ export const DB = {
     },
     {
       id: "dalio", name: "Ray Dalio", role: "Bridgewater · Founder",
-      photo: "/advisors/dalio.jpg",
+      photo: "/advisors/dalio.png",
       face: "linear-gradient(135deg,#3B82F6,#1e40af)", initials: "RD",
       style: "All-Weather. 거시 사이클·리스크 패리티 기반의 전천후 분산을 추구합니다.",
       opening: "지금은 부채 사이클 후반부입니다. 자산이 한국 원화·단일 법인의 저수익 현금에 집중된 것이 가장 큰 리스크입니다. 유휴현금의 절반은 통화·자산군·지역으로 '리스크 패리티' 분산하고, 싱가포르 거점으로 통화 헤지층을 만드세요.",
@@ -116,7 +116,7 @@ export const DB = {
     },
     {
       id: "buffett", name: "Warren Buffett", role: "Berkshire · Chairman",
-      photo: "/advisors/buffett.jpg",
+      photo: "/advisors/buffett.png",
       face: "linear-gradient(135deg,#F4B740,#b8860b)", initials: "WB",
       style: "가치투자·해자(Moat). 이해 가능한 우량 현금흐름 자산의 장기 보유를 선호합니다.",
       opening: "혁신도 좋지만, 잉여현금은 '이해되는 자산'에 들어가야 합니다. 안정적 현금흐름을 내는 인프라·우량 사모대출을 코어로 깔고, 비상장 지분은 저평가 골든타임에만 승계 법인으로 넘기세요. 지금 주식 가치는 업황 둔화로 일시적으로 싸졌습니다 — 증여 적기입니다.",
