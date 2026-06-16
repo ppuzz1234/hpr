@@ -45,7 +45,7 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n  Hanwha Private Room API`);
+  console.log(`\n  PLUS Private Room API`);
   console.log(`  ▸ http://localhost:${PORT}/api/health`);
   console.log(`  ▸ CORS origin: ${ORIGIN}\n`);
 });

@@ -36,7 +36,7 @@ export default function DeviceFrame() {
         <div className="device">
           <div className="screen">
             <div className="island" />
-            <iframe src="/" title="Hanwha Private Room" />
+            <iframe src="/" title="PLUS Private Room" />
           </div>
           <span className="btn-side b-action" />
           <span className="btn-side b-volup" />

@@ -15,9 +15,9 @@ export default function Topbar({ onHamburger }) {
       <button className="hamburger" onClick={onHamburger} aria-label="menu">☰</button>
 
       <Link to="/" className="topbar-brand">
-        <div className="brand-mark">HPR</div>
+        <div className="brand-mark">PPR</div>
         <div className="bt">
-          <strong>Hanwha</strong>
+          <strong>PLUS</strong>
           <span>PRIVATE ROOM</span>
         </div>
       </Link>
@@ -27,7 +27,7 @@ export default function Topbar({ onHamburger }) {
           {idx < 0 ? (
             <div className="step-pill">
               <span className="num">◈</span>
-              Hanwha Private Room · Multi-Family Office Platform
+              PlUS Private Room · Multi-Family Office Platform
             </div>
           ) : (
             STEPS.map((s, i) => (

@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "main": "src/index.js",
-  "description": "Hanwha Private Room API (Node.js + Express) — 향후 재무 OCR / 평가엔진 / Tranching API 연동",
+  "description": "PLUS Private Room API (Node.js + Express) — 향후 재무 OCR / 평가엔진 / Tranching API 연동",
   "scripts": {
     "dev": "node --watch src/index.js",
     "start": "node src/index.js"

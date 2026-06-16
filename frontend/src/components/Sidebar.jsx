@@ -5,9 +5,9 @@ export default function Sidebar({ open, onNavigate }) {
   return (
     <aside className={"sidebar" + (open ? " open" : "")}>
       <Link to="/" className="brand" onClick={onNavigate}>
-        <div className="brand-mark">HPR</div>
+        <div className="brand-mark">PPR</div>
         <div className="brand-name">
-          <strong>Hanwha</strong>
+          <strong>PLUS</strong>
           <span>Private Room</span>
         </div>
       </Link>
