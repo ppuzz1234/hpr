@@ -84,9 +84,96 @@ export const companies = {
 export const companyOrder = ["shingoryeo", "daesung"];
 export const defaultCompanyId = "shingoryeo";
 
+/* ============================================================
+   기관 투자자(Institution) — 기업 검색 디렉터리
+   회사명 또는 사업자등록번호로 검색. 데이터 연동 전 목업.
+   id 가 위 companies 에 존재하면 정밀 진단 데이터를 재사용하고,
+   없으면 buildCompany() 로 진단 프로필을 가설 생성한다.
+   bi: 회사 브랜드 아이덴티티(모노그램 칩) — short(1~3자) · color · fg(글자색)
+   ============================================================ */
+export const companyDirectory = [
+  // ── 지정 3개사 ──
+  { id: "shingoryeo", name: "신고려관광㈜", bizno: "123-81-45678", sector: "레저 · 회원제 골프장", bi: { short: "신", color: "#1f9c8a", fg: "#04201b" } },
+  { id: "daesung",    name: "대성홀딩스㈜", bizno: "514-81-00120", sector: "지주 · 에너지",        bi: { short: "大", color: "#C8102E", fg: "#fff" } },
+  { id: "hanwhalife", name: "한화생명㈜",   bizno: "110-81-12345", sector: "생명보험",            bi: { short: "H", color: "#F37321", fg: "#fff" } },
+  // ── 국내 10대 기업 ──
+  { id: "samsung",    name: "삼성전자㈜",         bizno: "124-81-00998", sector: "반도체 · 전자",   bi: { short: "S",   color: "#1428A0", fg: "#fff" } },
+  { id: "skhynix",    name: "SK하이닉스㈜",       bizno: "217-81-15304", sector: "반도체 메모리",   bi: { short: "SK",  color: "#EA002C", fg: "#fff" } },
+  { id: "hyundai",    name: "현대자동차㈜",       bizno: "101-81-09147", sector: "완성차",         bi: { short: "현",  color: "#002C5F", fg: "#fff" } },
+  { id: "lgensol",    name: "LG에너지솔루션㈜",   bizno: "375-87-00088", sector: "2차전지",        bi: { short: "LG",  color: "#A50034", fg: "#fff" } },
+  { id: "samsungbio", name: "삼성바이오로직스㈜", bizno: "774-87-00078", sector: "바이오 CDMO",    bi: { short: "B",   color: "#1428A0", fg: "#fff" } },
+  { id: "kia",        name: "기아㈜",             bizno: "119-81-02316", sector: "완성차",         bi: { short: "K",   color: "#05141F", fg: "#fff" } },
+  { id: "posco",      name: "POSCO홀딩스㈜",      bizno: "506-81-00023", sector: "철강 · 지주",     bi: { short: "P",   color: "#00A0E9", fg: "#fff" } },
+  { id: "naver",      name: "네이버㈜",           bizno: "220-81-62517", sector: "인터넷 플랫폼",   bi: { short: "N",   color: "#03C75A", fg: "#fff" } },
+  { id: "kakao",      name: "카카오㈜",           bizno: "120-81-47521", sector: "인터넷 플랫폼",   bi: { short: "k",   color: "#FEE500", fg: "#1a1a1a" } },
+  { id: "celltrion",  name: "셀트리온㈜",         bizno: "160-81-04429", sector: "바이오시밀러",   bi: { short: "C",   color: "#0F62FE", fg: "#fff" } },
+];
+
+// 문자열 → 안정적 의사난수 시드(0~1) — 검색 회사별 진단 수치를 결정적으로 생성
+function seed(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return ((h >>> 0) % 1000) / 1000;
+}
+
+/* 디렉터리 엔트리 → Home/STEP 화면이 요구하는 전체 진단 프로필을 가설 생성.
+   (이미 companies 에 정밀 데이터가 있는 회사는 그대로 사용) */
+export function buildCompany(entry) {
+  if (companies[entry.id]) return companies[entry.id];
+
+  const s = seed(entry.id);
+  const revenue   = Math.round(800 + s * 9000);            // 매출(억)
+  const ebitda    = Math.round(revenue * (0.14 + s * 0.12));
+  const fcf       = Math.round(ebitda * (0.3 + s * 0.25));
+  const retained  = Math.round(revenue * (0.6 + s * 1.4));
+  const idleCash  = Math.round(retained * (0.4 + s * 0.4));
+  const roic      = +(5 + s * 4).toFixed(1);
+  const wacc      = +(7 + s * 1.5).toFixed(1);
+  const oppCost   = Math.round(idleCash * 0.06);
+  const deployable = Math.round(idleCash * (0.55 + s * 0.2));
+  const score     = Math.round(64 + s * 22);
+  const effTax    = 41.2;
+
+  return {
+    id: entry.id,
+    name: entry.name,
+    short: entry.name.replace(/[㈜()주식회사\s]/g, ""),
+    sector: entry.sector,
+    bi: entry.bi,
+    main: { revenue, ebitda, fcf, idleCash, retained, roic, wacc, netMargin: Math.round(8 + s * 14) },
+    succ: { name: entry.name.replace(/㈜.*$/, "") + " 패밀리홀딩스(가칭)", ownership: 0, cash: 0 },
+    family: { members: 3 + Math.round(s * 3), effTaxRate: effTax, networth: Math.round(retained * 1.2) },
+    scanLog: [
+      `사업자등록번호 <b class='ok'>${entry.bizno}</b> 조회 … 법인 식별 완료`,
+      `재무제표 인식 … 매출 <b class='ok'>${revenue.toLocaleString()}억</b> · EBITDA ${ebitda.toLocaleString()}억`,
+      `미처분이익잉여금 … <b class='ok'>${retained.toLocaleString()}억</b> / 유휴현금 ${idleCash.toLocaleString()}억 인식`,
+      `투하자본이익률(ROIC) … <b class='ok'>${roic}%</b> · WACC ${wacc}%`,
+      `유휴자본 기회비용 추정 … 연 <b class='ok'>${oppCost}억</b> 상당`,
+      "AI 1-Page Executive Summary 생성 완료",
+    ],
+    diag: {
+      oppCost, idleCash, deployable, retained, score,
+      keywords: ["대체투자", "사모대출", "인프라·실물", "글로벌 분산"],
+      comment:
+        `<b style='color:var(--txt)'>${entry.name}</b>은(는) 본업 현금흐름 대비 ` +
+        `<b style='color:var(--txt)'>유휴현금 ${idleCash.toLocaleString()}억이 ${roic}% 수익률에 정체</b>되어 ` +
+        `연 ${oppCost}억의 기회비용이 발생 중입니다. ` +
+        `<b style='color:var(--mint)'>가족 LLC를 그릇으로 ${deployable.toLocaleString()}억을 대체투자로 이전</b>하는 것이 최적 경로입니다.`,
+      summary: [
+        { label: "매출액", value: `${revenue.toLocaleString()}억`, delta: `EBITDA ${ebitda.toLocaleString()}억`, deltaCls: "up" },
+        { label: "미처분이익잉여금", value: `${retained.toLocaleString()}억`, valueCls: "mint", delta: `유휴현금 ${idleCash.toLocaleString()}억` },
+        { label: "ROIC", value: `${roic}%`, valueCls: "down", delta: `WACC ${wacc}% 대비`, deltaCls: "down" },
+        { label: "기회비용", value: `-${oppCost}억/년`, valueCls: "down", delta: "유휴자본 정체", deltaCls: "down" },
+      ],
+    },
+  };
+}
+
 export const DB = {
   companies,
   companyOrder,
+  companyDirectory,
+  buildCompany,
 
   // STEP 1.1 글로벌 어드바이저 (photo: public/advisors/ 에 파일 추가 시 원형 사진 표시, 없으면 이니셜)
   advisors: [

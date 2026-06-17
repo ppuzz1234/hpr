@@ -7,6 +7,7 @@ import advisors from "./routes/advisors.js";
 import deals from "./routes/deals.js";
 import portfolio from "./routes/portfolio.js";
 import singapore from "./routes/singapore.js";
+import auth from "./routes/auth.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.get("/api/health", (_req, res) =>
 );
 
 // 도메인 라우트 (현재는 목업 응답 → 향후 실제 엔진/DB 연동)
+app.use("/api/auth", auth);
 app.use("/api/diagnose", diagnose);
 app.use("/api/advisors", advisors);
 app.use("/api/deals", deals);

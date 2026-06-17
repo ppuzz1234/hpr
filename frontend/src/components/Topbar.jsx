@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { STEPS } from "../utils.js";
-import { DB } from "../data.js";
 import { useApp } from "../context/AppContext.jsx";
 
 export default function Topbar({ onHamburger }) {
   const loc = useLocation();
-  const { company, companyId, switchCompany } = useApp();
+  const { company, companyId, switchCompany, companies, companyOrder } = useApp();
   const [menuOpen, setMenuOpen] = useState(false);
   const idx = STEPS.findIndex((s) => s.to === loc.pathname);
 
@@ -50,7 +49,11 @@ export default function Topbar({ onHamburger }) {
         </div>
         <div className="corp-wrap">
           <div className="corp-switch" onClick={() => setMenuOpen((o) => !o)}>
-            <span className="corp-dot" />
+            {company.bi ? (
+              <span className="corp-bi" style={{ background: company.bi.color, color: company.bi.fg }}>{company.bi.short}</span>
+            ) : (
+              <span className="corp-dot" />
+            )}
             <span className="corp-name">{company.name}</span>
             <span className="caret">▾</span>
           </div>
@@ -59,15 +62,20 @@ export default function Topbar({ onHamburger }) {
               <div className="corp-menu-bg" onClick={() => setMenuOpen(false)} />
               <div className="corp-menu">
                 <div className="corp-menu-label">진단 대상 법인</div>
-                {DB.companyOrder.map((id) => {
-                  const c = DB.companies[id];
+                {companyOrder.map((id) => {
+                  const c = companies[id];
+                  if (!c) return null;
                   return (
                     <div
                       key={id}
                       className={"corp-menu-item" + (id === companyId ? " active" : "")}
                       onClick={() => { switchCompany(id); setMenuOpen(false); }}
                     >
-                      <span className="corp-dot" />
+                      {c.bi ? (
+                        <span className="corp-bi" style={{ background: c.bi.color, color: c.bi.fg }}>{c.bi.short}</span>
+                      ) : (
+                        <span className="corp-dot" />
+                      )}
                       <div className="corp-menu-text">
                         <strong>{c.name}</strong>
                         <span>{c.sector}</span>
