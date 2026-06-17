@@ -1,6 +1,6 @@
 // 금액 포맷 (억/조)
 export const won = (n) =>
-  n >= 10000 ? (n / 10000).toFixed(2) + "조" : n.toLocaleString() + "억";
+  n >= 10000 ? Number((n / 10000).toFixed(2)) + "조" : n.toLocaleString() + "억";
 
 // 내비게이션 설정
 export const NAV = [

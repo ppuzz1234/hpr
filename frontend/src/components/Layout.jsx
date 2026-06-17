@@ -14,7 +14,7 @@ export default function Layout() {
     <div id="app">
       <Sidebar open={sidebarOpen} onNavigate={() => setSidebarOpen(false)} />
       <main className="main">
-        <StatusBar />
+        {/* <StatusBar /> */}
         <Topbar onHamburger={() => setSidebarOpen((o) => !o)} />
         <section className="view view-anim" key={loc.pathname}>
           <Outlet />
