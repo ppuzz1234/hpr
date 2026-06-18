@@ -43,7 +43,7 @@ export default function CompanySearch() {
         <div className="cs-search">
           <span className="cs-search-ic">⌕</span>
           <input
-            autoFocus
+            // autoFocus
             className="cs-input"
             placeholder="예) 신고려관광  ·  124-81-00998"
             value={q}

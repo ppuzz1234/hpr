@@ -36,7 +36,7 @@ export default function UserType() {
   };
 
   return (
-    <div className="onb">
+    <div className="onb scroll">
       <div className="onb-inner">
         <header className="ut-head">
           <div className="splash-mark sm">PPR</div>

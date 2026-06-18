@@ -93,9 +93,9 @@ export const defaultCompanyId = "shingoryeo";
    ============================================================ */
 export const companyDirectory = [
   // ── 지정 3개사 ──
+  { id: "hanwhalife", name: "한화생명㈜",   bizno: "110-81-12345", sector: "생명보험",            bi: { short: "H", color: "#F37321", fg: "#fff" } },
   { id: "shingoryeo", name: "신고려관광㈜", bizno: "123-81-45678", sector: "레저 · 회원제 골프장", bi: { short: "신", color: "#1f9c8a", fg: "#04201b" } },
   { id: "daesung",    name: "대성홀딩스㈜", bizno: "514-81-00120", sector: "지주 · 에너지",        bi: { short: "大", color: "#C8102E", fg: "#fff" } },
-  { id: "hanwhalife", name: "한화생명㈜",   bizno: "110-81-12345", sector: "생명보험",            bi: { short: "H", color: "#F37321", fg: "#fff" } },
   // ── 국내 10대 기업 ──
   { id: "samsung",    name: "삼성전자㈜",         bizno: "124-81-00998", sector: "반도체 · 전자",   bi: { short: "S",   color: "#1428A0", fg: "#fff" } },
   { id: "skhynix",    name: "SK하이닉스㈜",       bizno: "217-81-15304", sector: "반도체 메모리",   bi: { short: "SK",  color: "#EA002C", fg: "#fff" } },
