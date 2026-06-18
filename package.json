@@ -2,7 +2,7 @@
   "name": "hanwha-private-room",
   "private": true,
   "version": "0.1.0",
-  "description": "Hanwha Private Room — B2B 폐쇄형 멀티패밀리오피스 플랫폼 (React + Node.js monorepo)",
+  "description": "PLUS Private Room — B2B 폐쇄형 멀티패밀리오피스 플랫폼 (React + Node.js monorepo)",
   "workspaces": [
     "frontend",
     "backend"

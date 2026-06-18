@@ -46,7 +46,7 @@ export default function DeviceFrame() {
         </div>
       </div>
       <div className="caption">
-        <div className="t"><b>iPhone 17 Pro</b> · Hanwha Private Room Simulator</div>
+        <div className="t"><b>iPhone 17 Pro</b> · PLUS Private Room Simulator</div>
         <a href="/">전체 화면(브라우저)으로 열기 →</a>
       </div>
     </div>

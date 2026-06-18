@@ -393,6 +393,7 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
 /* mobile-only chrome (hidden by default) */
 .statusbar { display: none; }
 .bottom-nav { display: none; }
+.sidebar-backdrop { display: none; }
 .topbar-brand { display: none; }
 
 /* responsive */
@@ -402,10 +403,14 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
   .hero-phone { display: none; }
 }
 @media (max-width: 820px) {
-  .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 150; transform: translateX(-100%); transition: .25s; }
+  .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 1600; transform: translateX(-100%); transition: .25s; box-shadow: 0 0 40px rgba(0,0,0,.5); }
   .sidebar.open { transform: none; }
+  /* 햄버거 확장 시 사이드바를 topbar(z-index:500) 위로 + 닫기용 backdrop */
+  .sidebar-backdrop { display: block; position: fixed; inset: 0; z-index: 1500; background: rgba(6,9,12,.55); backdrop-filter: blur(2px); }
   .hamburger { display: block; }
-  .g-2, .g-3, .g-4, .advisor-grid { grid-template-columns: 1fr; }
+  .g-2, .g-3, .advisor-grid { grid-template-columns: 1fr; }
+  /* KPI 지표 타일은 1열로 무너뜨리지 않고 2열 유지 → 내용 좌측 쏠림 방지 */
+  .g-4 { grid-template-columns: repeat(2, 1fr); }
   .span-2 { grid-column: span 1; }
   .step-track, .search { display: none; }
 }
@@ -458,9 +463,11 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
   .hero { padding: 30px 22px; border-radius: 20px; }
   .hero h1 { font-size: 28px; letter-spacing: -.6px; }
   .hero p { font-size: 13px; margin-top: 12px; }
-  .hero .stat-row { gap: 14px 26px; flex-wrap: wrap; margin-top: 24px; }
-  .hero .stat .n { font-size: 22px; }
-  .hero .stat .l { font-size: 11px; }
+  /* 3개 stat을 한 줄에 균등 배치 (마지막 항목이 다음 줄로 내려가지 않도록) */
+  .hero .stat-row { gap: 10px; flex-wrap: nowrap; margin-top: 24px; }
+  .hero .stat { flex: 1 1 0; min-width: 0; }
+  .hero .stat .n { font-size: 19px; letter-spacing: -.3px; }
+  .hero .stat .l { font-size: 9.5px; line-height: 1.3; margin-top: 5px; }
   .hero .cta-row { flex-direction: column; gap: 10px; margin-top: 26px; }
   .hero .cta-row .btn { width: 100%; }
 

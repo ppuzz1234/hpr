@@ -13,6 +13,7 @@ export default function Layout() {
   return (
     <div id="app">
       <Sidebar open={sidebarOpen} onNavigate={() => setSidebarOpen(false)} />
+      {sidebarOpen && <div className="sidebar-backdrop" onClick={() => setSidebarOpen(false)} />}
       <main className="main">
         {/* <StatusBar /> */}
         <Topbar onHamburger={() => setSidebarOpen((o) => !o)} />
