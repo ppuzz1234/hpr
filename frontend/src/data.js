@@ -1,5 +1,5 @@
 /* ============================================================
-   PLUS Babel — Mock data layer
+   PLUS Babell — Mock data layer
    회사별 진단 데이터(신고려관광·대성홀딩스) + 공통(어드바이저·딜·포트폴리오)
    향후 백엔드 API(재무 OCR / 평가엔진 / Tranching API)로 대체
    ============================================================ */
@@ -315,17 +315,17 @@ export const DB = {
 
   /* ============================================================
      개인투자(HNW) 딜 — 해외 비상장 기업 SPV 투자 (목업)
-     실제로는 기업 지분을 직접 보유하는 것이 아니라, Babel이 결성한
+     실제로는 기업 지분을 직접 보유하는 것이 아니라, Babell이 결성한
      단일 종목 SPV(특수목적기구)의 지분을 취득하는 구조
      ============================================================ */
   hnwDeals: [
     {
       id: "openai", name: "OpenAI", tag: "AI · Series G", sector: "인공지능",
-      badge: "인기", accent: "var(--mint)",
-      valuation: 3000000, minInvest: 5000, filled: 68, demoReturn: 12.4,
+      badge: "인기", accent: "var(--mint)", icon: "✨",
+      valuation: 3000000, minInvest: 5000, filled: 68, demoReturn: 12.4, roundChange: 146.2,
       desc: "차세대 파운데이션 모델을 개발하는 AI 리서치·제품 기업. 후속 라운드(Series G) 참여 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Babel SPV에 투자금을 맡겨요",
+        "고객님이 Babell SPV에 투자금을 맡겨요",
         "SPV가 OpenAI 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
@@ -341,11 +341,11 @@ export const DB = {
     },
     {
       id: "anthropic", name: "Anthropic", tag: "AI · Series F", sector: "인공지능",
-      badge: "신규", accent: "var(--violet)",
-      valuation: 1830000, minInvest: 6000, filled: 55, demoReturn: 8.1,
+      badge: "신규", accent: "var(--violet)", icon: "🧠",
+      valuation: 1830000, minInvest: 6000, filled: 55, demoReturn: 8.1, roundChange: 92.7,
       desc: "안전성 중심의 AI 모델 Claude를 개발하는 AI 리서치 기업. 최신 라운드(Series F) 참여 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Babel SPV에 투자금을 맡겨요",
+        "고객님이 Babell SPV에 투자금을 맡겨요",
         "SPV가 Anthropic 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],

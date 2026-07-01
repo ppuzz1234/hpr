@@ -45,7 +45,7 @@ export default function Login() {
         <header className="login-brand">
           <div className="splash-mark sm"><BrandMark size={24} /></div>
           <div className="login-titles">
-            <strong>PLUS Babel</strong>
+            <strong>PLUS Babell</strong>
             <span>Private Deal 해외비상장 투자 플랫폼</span>
           </div>
         </header>
@@ -89,7 +89,7 @@ export default function Login() {
         )}
 
         <button className="login-foot-link" onClick={() => proceed("guest", { guest: true })}>
-          이미 Babel 회원이신가요? <b>로그인하세요</b>
+          이미 Babell 회원이신가요? <b>로그인하세요</b>
         </button>
       </div>
     </div>

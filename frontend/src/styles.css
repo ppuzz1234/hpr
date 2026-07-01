@@ -1,5 +1,5 @@
 /* ============================================================
-   PLUS Babel — Design System (AIM tone & manner)
+   PLUS Babell — Design System (AIM tone & manner)
    ============================================================ */
 :root {
   --bg:        #0E1116;
@@ -352,13 +352,13 @@ input[type=range]::-moz-range-thumb {
 .deal-banner { height: 92px; position: relative; display: flex; align-items: flex-end; padding: 14px; }
 .deal-banner .badge { position: absolute; top: 12px; right: 12px; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 20px; background: rgba(0,0,0,.4); backdrop-filter: blur(4px); }
 .deal-banner .cat { font-size: 11px; font-weight: 700; color: #fff; background: rgba(0,0,0,.35); padding: 4px 10px; border-radius: 8px; }
-.deal-body { padding: 16px; }
+.deal-body { padding: 13px 15px 15px; }
 .deal-body h4 { font-size: 15px; }
 .deal-body .sub { font-size: 12px; color: var(--txt-2); margin-top: 4px; }
-.deal-meta { display: flex; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+.deal-meta { display: flex; justify-content: space-between; margin-top: 11px; padding-top: 11px; border-top: 1px solid var(--line-soft); }
 .deal-meta .k { font-size: 10.5px; color: var(--txt-3); }
-.deal-meta .v { font-size: 14px; font-weight: 700; margin-top: 3px; }
-.commit-bar { height: 6px; background: var(--panel-2); border-radius: 6px; margin-top: 14px; overflow: hidden; }
+.deal-meta .v { font-size: 14px; font-weight: 700; margin-top: 2px; }
+.commit-bar { height: 6px; background: var(--panel-2); border-radius: 6px; margin-top: 10px; overflow: hidden; }
 .commit-bar i { display: block; height: 100%; background: var(--grad-mint); }
 
 /* tranche table */
@@ -411,7 +411,7 @@ input[type=range]::-moz-range-thumb {
 .modal .close { position: absolute; top: 18px; right: 20px; background: none; border: none; color: var(--txt-3); font-size: 22px; cursor: pointer; }
 
 /* misc */
-.mt-8 { margin-top: 8px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; }
+.mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; }
 .row { display: flex; align-items: center; gap: 12px; }
 .row.between { justify-content: space-between; }
 .row.wrap { flex-wrap: wrap; }
@@ -546,11 +546,14 @@ input[type=range]::-moz-range-thumb {
     padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
     justify-content: space-around;
   }
-  .bn-item { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; cursor: pointer; padding: 3px 0; color: var(--txt-3); transition: .15s; background: none; border: none; font-family: inherit; }
-  .bn-item .ic { font-size: 18px; line-height: 1; }
-  .bn-item .lb { font-size: 9.5px; font-weight: 600; }
+  .bn-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; cursor: pointer; padding: 3px 0; color: var(--txt-3); transition: .15s; background: none; border: none; font-family: inherit; }
+  .bn-item .ic { font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; width: 46px; height: 26px; border-radius: 999px; transition: background .18s, box-shadow .18s, transform .18s; }
+  .bn-item .lb { font-size: 9.5px; font-weight: 600; transition: .15s; }
+  /* 선택 탭 시인성 강화: 상단 인디케이터 + 알약형 배경 + 라벨 강조 */
   .bn-item.active { color: var(--mint); }
-  .bn-item.active .ic { text-shadow: 0 0 14px rgba(var(--mint-rgb),.6); }
+  .bn-item.active::before { content: ""; position: absolute; top: -8px; width: 28px; height: 3px; border-radius: 0 0 4px 4px; background: var(--mint); box-shadow: 0 0 10px rgba(var(--mint-rgb),.7); }
+  .bn-item.active .ic { background: rgba(var(--mint-rgb),.16); box-shadow: 0 0 16px rgba(var(--mint-rgb),.45); transform: translateY(-1px); text-shadow: 0 0 14px rgba(var(--mint-rgb),.6); }
+  .bn-item.active .lb { font-weight: 800; letter-spacing: .2px; }
 }
 
 /* ============================================================
@@ -821,11 +824,13 @@ input[type=range]::-moz-range-thumb {
   border-top: 1px solid var(--line); padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
 }
 .hnw-tab {
-  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
-  padding: 6px 0; text-decoration: none; color: var(--txt-3); font-size: 10.5px; font-weight: 600;
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 6px 0; text-decoration: none; color: var(--txt-3); font-weight: 600;
 }
-.hnw-tab span { font-size: 18px; }
-.hnw-tab.active { color: var(--mint); }
+.hnw-tab svg { transition: color .18s; }
+/* 라벨(메뉴 설명): 선택 영향 없이 항상 고정 */
+.hnw-tab .lb { font-size: 12.6px; color: var(--txt-3); }
+/* 선택돼도 색상은 그대로 — SVG가 외곽선→솔리드(같은 색 채움)로만 전환됨 */
 .hnw-bell { font-size: 20px; }
 .hnw-home-summary { width: 100%; text-align: left; cursor: pointer; font-family: inherit; color: var(--txt); }
 
@@ -842,13 +847,34 @@ input[type=range]::-moz-range-thumb {
 /* HNW 딜 카드 — Step3 클럽딜의 .deal-card/.deal-banner(그라디언트 배지형)와 달리
    배경 대비를 키운 단색 카드 + 스테이지·설명만 보여주는 축소형 배너라 별도 클래스로 둔다 */
 .hnw-deal-card {
-  background: var(--panel-2); border: 1px solid var(--line); border-radius: 16px;
-  overflow: hidden; transition: .18s; box-shadow: 0 8px 22px rgba(0,0,0,.35);
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px;
+  padding: 15px; overflow: hidden; transition: .18s; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,.22);
 }
 .hnw-deal-card:hover { border-color: var(--mint-dim); transform: translateY(-2px); }
-.hnw-deal-banner { background: var(--panel); border-bottom: 1px solid var(--line-soft); padding: 12px 16px; }
-.hnw-deal-banner .stage { font-size: 10.5px; font-weight: 900; font-style: italic; letter-spacing: 1px; text-transform: uppercase; }
-.hnw-deal-banner .desc { font-size: 12px; color: var(--txt-2); line-height: 1.5; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hnw-deal-card:active { transform: translateY(0); }
+.hnw-deal-card .commit-bar { background: var(--line); }
+
+/* 상품 헤더 — fancy 아이콘 + 종목명 + 라운드 태그 */
+.deal-head { display: flex; align-items: center; gap: 12px; }
+.deal-ic {
+  flex-shrink: 0; width: 46px; height: 46px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center; font-size: 24px; line-height: 1;
+}
+.deal-head-txt { flex: 1; min-width: 0; }
+.deal-head-txt h4 { font-size: 16px; font-weight: 800; }
+.deal-tagline { font-size: 11px; color: var(--txt-3); font-weight: 700; letter-spacing: .4px; margin-top: 2px; text-transform: uppercase; }
+.deal-desc {
+  font-size: 12px; color: var(--txt-2); line-height: 1.5; margin-top: 11px;
+  display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* 직전 라운드 단가 대비 등락 — 상승 붉은색 / 하락 파란색 */
+.deal-change { display: flex; align-items: baseline; justify-content: space-between; margin-top: 12px; }
+.deal-change .lbl { font-size: 11.5px; color: var(--txt-3); }
+.deal-change b { font-size: 18px; font-weight: 800; letter-spacing: .2px; }
+.deal-change b.up { color: var(--red); }
+.deal-change b.down { color: var(--blue); }
 
 /* ============================================================
    Device simulator (route: /device) — iPhone 17 Pro frame

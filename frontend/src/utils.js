@@ -9,7 +9,7 @@ export const manwon = (n) =>
 // 내비게이션 설정
 export const NAV = [
   { group: "게이트웨이" },
-  { to: "/", ic: "◈", label: "Babel", end: true },
+  { to: "/", ic: "◈", label: "Babell", end: true },
   { group: "자산이전 여정" },
   { to: "/step1", ic: "①", label: "진단 · 시뮬레이터", step: "STEP 1" },
   { to: "/step2", ic: "②", label: "비히클 설립", step: "STEP 2" },

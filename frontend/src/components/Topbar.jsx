@@ -27,7 +27,7 @@ export default function Topbar({ onHamburger }) {
           {idx < 0 ? (
             <div className="step-pill">
               <span className="num">◈</span>
-              PLUS Babel · Multi-Family Office Platform
+              PLUS Babell · Multi-Family Office Platform
             </div>
           ) : (
             STEPS.map((s, i) => (

@@ -284,7 +284,7 @@ function ContractStage({ deal, amt, onConfirm }) {
         <div className="row between"><span className="muted" style={{ fontSize: 12.5 }}>투자금</span><b>{manwon(amt)}</b></div>
         <div className="divider" />
         <p className="tiny">
-          계약 상대는 Babel의 운영사인 <b style={{ color: "var(--mint)" }}>한화투자증권 신탁</b>이며, 투자 대상은{" "}
+          계약 상대는 Babell의 운영사인 <b style={{ color: "var(--mint)" }}>한화투자증권 신탁</b>이며, 투자 대상은{" "}
           <b style={{ color: "var(--mint)" }}>{deal.name} 주식을 보유한 SPV 지분</b>이에요.
         </p>
       </div>
@@ -325,7 +325,7 @@ function ContractDocModal({ deal, amt }) {
       <div className="view-eyebrow">SPV 지분 매매계약서 · 샘플</div>
       <h3 style={{ marginTop: 8 }}>{deal.name} SPV 지분 매매계약서</h3>
       <p className="tiny mt-8">
-        계약일 {today} · 매도인: 한화투자증권 신탁(Babel SPV 운영사) · 매수인: 본인
+        계약일 {today} · 매도인: 한화투자증권 신탁(Babell SPV 운영사) · 매수인: 본인
       </p>
       <div className="divider" />
       {articles.map((a) => (

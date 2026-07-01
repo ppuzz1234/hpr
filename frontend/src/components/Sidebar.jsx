@@ -9,7 +9,7 @@ export default function Sidebar({ open, onNavigate }) {
         <div className="brand-mark"><BrandMark size={22} /></div>
         <div className="brand-name">
           <strong>PLUS</strong>
-          <span>Babel</span>
+          <span>Babell</span>
         </div>
       </Link>
 

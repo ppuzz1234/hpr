@@ -15,26 +15,37 @@ export default function HnwInvest() {
       </div>
 
       <div className="grid g-2">
-        {DB.hnwDeals.map((d) => (
-          <div className="hnw-deal-card" key={d.id} style={{ cursor: "pointer" }} onClick={() => navigate(`/hnw/deal/${d.id}`)}>
-            <div className="hnw-deal-banner">
-              <span className="stage" style={{ color: d.accent }}>{d.tag}</span>
-              <p className="desc">{d.desc}</p>
-            </div>
-            <div className="deal-body">
-              <div className="row between">
-                <h4>{d.name}</h4>
-                <span className="card-tag">{d.badge}</span>
+        {DB.hnwDeals.map((d) => {
+          const up = d.roundChange >= 0;
+          return (
+            <div className="hnw-deal-card" key={d.id} onClick={() => navigate(`/hnw/deal/${d.id}`)}>
+              <div className="deal-head">
+                <div className="deal-ic" style={{ background: `color-mix(in srgb, ${d.accent} 16%, transparent)` }}>{d.icon}</div>
+                <div className="deal-head-txt">
+                  <div className="row between">
+                    <h4>{d.name}</h4>
+                    <span className="card-tag">{d.badge}</span>
+                  </div>
+                  <div className="deal-tagline">{d.tag}</div>
+                </div>
               </div>
+
+              <p className="deal-desc">{d.desc}</p>
+
               <div className="deal-meta">
                 <div><div className="k">기업가치</div><div className="v">{won(d.valuation)}</div></div>
                 <div style={{ textAlign: "right" }}><div className="k">최소 투자금</div><div className="v" style={{ color: "var(--mint)" }}>{manwon(d.minInvest)}</div></div>
               </div>
+
+              <div className="deal-change">
+                <span className="lbl">직전 라운드 단가 대비</span>
+                <b className={up ? "up" : "down"}>{up ? "+" : ""}{d.roundChange.toFixed(2)}%</b>
+              </div>
+
               <div className="commit-bar"><i style={{ width: d.filled + "%" }} /></div>
-              <button className="btn btn-primary btn-block mt-16">딜 상세 보기 →</button>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </>
   );
