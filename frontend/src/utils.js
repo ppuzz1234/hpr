@@ -1,11 +1,15 @@
-// 금액 포맷 (억/조)
+// 금액 포맷 (억/조) — 법인·펀드 스케일
 export const won = (n) =>
   n >= 10000 ? Number((n / 10000).toFixed(2)) + "조" : n.toLocaleString() + "억";
+
+// 금액 포맷 (만원/억) — 개인투자(HNW) 스케일
+export const manwon = (n) =>
+  n >= 10000 ? Number((n / 10000).toFixed(1)) + "억" : n.toLocaleString() + "만원";
 
 // 내비게이션 설정
 export const NAV = [
   { group: "게이트웨이" },
-  { to: "/", ic: "◈", label: "Private Room", end: true },
+  { to: "/", ic: "◈", label: "Babel", end: true },
   { group: "자산이전 여정" },
   { to: "/step1", ic: "①", label: "진단 · 시뮬레이터", step: "STEP 1" },
   { to: "/step2", ic: "②", label: "비히클 설립", step: "STEP 2" },

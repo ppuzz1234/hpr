@@ -10,7 +10,7 @@ export function AppProvider({ children }) {
   // ----- 진입 게이트 (스플래시 → 로그인 → 타입선택 → 입장) -----
   // entered=false 이면 앱 본체(/) 접근 시 스플래시로 리다이렉트
   const [auth, setAuth] = useState({ entered: false, user: null, provider: null });
-  const [userType, setUserType] = useState(null); // "lp" | "gp" | "institution" | "angel"
+  const [userType, setUserType] = useState(null); // "hnw"(개인투자) | "institution"(법인투자) | "manager"(운용사)
 
   const signIn = useCallback((provider, user) => setAuth((a) => ({ ...a, user, provider })), []);
   const enter = useCallback(() => setAuth((a) => ({ ...a, entered: true })), []);
@@ -47,6 +47,14 @@ export function AppProvider({ children }) {
   const [vehicle, setVehicle] = useState({ trust: false, llc: false });
   const [commits, setCommits] = useState({}); // dealId -> 억
 
+  // ----- 개인투자(HNW) 보유 SPV 지분 -----
+  const [hnwHoldings, setHnwHoldings] = useState([]); // { dealId, amount(만원), investedAt }
+  const invest = useCallback(
+    (dealId, amount) => setHnwHoldings((h) => [...h, { dealId, amount, investedAt: Date.now() }]),
+    []
+  );
+  const exitHolding = useCallback((idx) => setHnwHoldings((h) => h.filter((_, i) => i !== idx)), []);
+
   // ----- 토스트 / 방어 팝업 -----
   const [toasts, setToasts] = useState([]);
   const dismiss = useCallback((id) => setToasts((t) => t.filter((x) => x.id !== id)), []);
@@ -74,6 +82,7 @@ export function AppProvider({ children }) {
     diag, setDiag,
     vehicle, setVehicle,
     commits, setCommits,
+    hnwHoldings, invest, exitHolding,
     toasts, toast, dismiss,
     modal, openModal, closeModal,
   };

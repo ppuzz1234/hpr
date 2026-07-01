@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { STEPS } from "../utils.js";
 import { useApp } from "../context/AppContext.jsx";
+import BrandMark from "./BrandMark.jsx";
 
 export default function Topbar({ onHamburger }) {
   const loc = useLocation();
@@ -14,10 +15,10 @@ export default function Topbar({ onHamburger }) {
       <button className="hamburger" onClick={onHamburger} aria-label="menu">☰</button>
 
       <Link to="/" className="topbar-brand">
-        <div className="brand-mark">PPR</div>
+        <div className="brand-mark"><BrandMark size={20} /></div>
         <div className="bt">
           <strong>PLUS</strong>
-          <span>PRIVATE ROOM</span>
+          <span>BABEL</span>
         </div>
       </Link>
 
@@ -26,7 +27,7 @@ export default function Topbar({ onHamburger }) {
           {idx < 0 ? (
             <div className="step-pill">
               <span className="num">◈</span>
-              PlUS Private Room · Multi-Family Office Platform
+              PLUS Babel · Multi-Family Office Platform
             </div>
           ) : (
             STEPS.map((s, i) => (

@@ -5,8 +5,17 @@ import DeviceFrame from "./components/DeviceFrame.jsx";
 import Splash from "./screens/Splash.jsx";
 import Login from "./screens/Login.jsx";
 import UserType from "./screens/UserType.jsx";
+import InvestorType from "./screens/InvestorType.jsx";
 import Welcome from "./screens/Welcome.jsx";
+import HnwAbout from "./screens/HnwAbout.jsx";
+import HnwSignup from "./screens/HnwSignup.jsx";
+import HnwIdentity from "./screens/HnwIdentity.jsx";
+import HnwShell from "./components/HnwShell.jsx";
+import HnwHome from "./screens/HnwHome.jsx";
+import HnwDealDetail from "./screens/HnwDealDetail.jsx";
+import HnwPortfolio from "./screens/HnwPortfolio.jsx";
 import CompanySearch from "./screens/CompanySearch.jsx";
+import GPDashboard from "./screens/GPDashboard.jsx";
 import Home from "./screens/Home.jsx";
 import Step1 from "./screens/Step1.jsx";
 import Step2 from "./screens/Step2.jsx";
@@ -22,12 +31,26 @@ export default function App() {
         {/* iPhone 17 Pro 디바이스 시뮬레이터 진입 경로 */}
         <Route path="/device" element={<DeviceFrame />} />
 
-        {/* 진입 단계: 스플래시 → 로그인 → 타입선택 → (기관)기업검색 / (그 외)랜딩 */}
+        {/* 진입 단계: 스플래시 → 로그인 → 타입선택(투자자/운용사)
+            → 투자자: 개인투자(HNW)/법인투자 분기 → 랜딩 or 기업검색
+            → 운용사: 콘솔 대시보드 */}
         <Route path="/splash" element={<Splash />} />
         <Route path="/login" element={<Login />} />
         <Route path="/welcome" element={<UserType />} />
+        <Route path="/investor-type" element={<InvestorType />} />
         <Route path="/welcome/:type" element={<Welcome />} />
+        <Route path="/welcome/hnw/about" element={<HnwAbout />} />
+        <Route path="/welcome/hnw/signup" element={<HnwSignup />} />
+        <Route path="/welcome/hnw/identity" element={<HnwIdentity />} />
         <Route path="/institution/search" element={<CompanySearch />} />
+        <Route path="/gp/dashboard" element={<GPDashboard />} />
+
+        {/* 개인투자(HNW) 딜 콘솔 — 기관 FCF 여정과 무관한 독립 셸 */}
+        <Route path="/hnw" element={<HnwShell />}>
+          <Route index element={<HnwHome />} />
+          <Route path="deal/:id" element={<HnwDealDetail />} />
+          <Route path="portfolio" element={<HnwPortfolio />} />
+        </Route>
 
         {/* 앱 본체 (진입 게이트 통과 후) */}
         <Route path="/" element={<Layout />}>

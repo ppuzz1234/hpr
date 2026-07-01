@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BrandMark from "../components/BrandMark.jsx";
 
 /* 스플래시 — 금융·투자의 무게감을 담은 첫 화면.
    일정 시간(약 2.8초) 후 로그인 화면으로 전환. 탭하면 즉시 스킵. */
@@ -25,12 +26,12 @@ export default function Splash() {
       <svg className="splash-bg" viewBox="0 0 402 874" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
           <linearGradient id="sgLine" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0" stopColor="#1f9c8a" />
-            <stop offset="1" stopColor="#34E0C4" />
+            <stop offset="0" stopColor="#8E3038" />
+            <stop offset="1" stopColor="#FF7A85" />
           </linearGradient>
           <linearGradient id="sgFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="rgba(52,224,196,.22)" />
-            <stop offset="1" stopColor="rgba(52,224,196,0)" />
+            <stop offset="0" stopColor="rgba(255,122,133,.16)" />
+            <stop offset="1" stopColor="rgba(255,122,133,0)" />
           </linearGradient>
         </defs>
         {/* 그리드 */}
@@ -41,16 +42,16 @@ export default function Splash() {
           <line key={"v" + i} x1={i * 100} y1="0" x2={i * 100} y2="874" stroke="#161e27" strokeWidth="1" />
         ))}
         {/* 상승 추세 영역 + 라인 */}
-        <path className="splash-area" d="M0 620 L60 600 L120 560 L180 520 L240 440 L300 380 L360 300 L402 250 L402 874 L0 874 Z" fill="url(#sgFill)" />
-        <path className="splash-path" d="M0 620 L60 600 L120 560 L180 520 L240 440 L300 380 L360 300 L402 250" fill="none" stroke="url(#sgLine)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path className="splash-area" d="M0 650 L60 610 L120 560 L175 515 L215 560 L255 545 L305 450 L355 350 L402 250 L402 874 L0 874 Z" fill="url(#sgFill)" />
+        <path className="splash-path" pathLength="1" d="M0 650 L60 610 L120 560 L175 515 L215 560 L255 545 L305 450 L355 350 L402 250" fill="none" stroke="url(#sgLine)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
 
       <div className="splash-glow" />
 
       <div className="splash-core">
-        <div className="splash-mark">PPR</div>
+        <div className="splash-mark"><BrandMark size={40} /></div>
         <div className="splash-eyebrow">CLOSED · TOP 0.1% MULTI-FAMILY OFFICE</div>
-        <h1 className="splash-title">PLUS<br /><span>PRIVATE ROOM</span></h1>
+        <h1 className="splash-title">PLUS<br /><span>BABEL</span></h1>
         <p className="splash-slogan">법인의 잉여현금을 가문의 영속자본으로.</p>
       </div>
 

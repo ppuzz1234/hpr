@@ -1,5 +1,5 @@
 /* ============================================================
-   PLUS Private Room — Mock data layer
+   PLUS Babel — Mock data layer
    회사별 진단 데이터(신고려관광·대성홀딩스) + 공통(어드바이저·딜·포트폴리오)
    향후 백엔드 API(재무 OCR / 평가엔진 / Tranching API)로 대체
    ============================================================ */
@@ -266,5 +266,97 @@ export const DB = {
     { k: "13U Enhanced Tier", req: "운용자산 S$50M+ / 전문인력 3인", ok: false, note: "자산요건 미달 (현 S$31M)" },
     { k: "VCC 설립 (Variable Capital)", req: "현지 이사 1인 + CSP", ok: true, note: "얼라이언스 CSP 매칭 가능" },
     { k: "Single FO 법인세 면제", req: "비즈니스 지출 S$200K+", ok: true, note: "충족 가능 — 시뮬레이션 통과" },
+  ],
+
+  /* ============================================================
+     운용사(GP) 콘솔 — 기본 구조 (목업)
+     내가 판매 중인 펀드 · 펀드별 고객(가입/희망) 현황 · 포트폴리오
+     기업 AI 보고서 자동화(영업보고서/심사)는 추후 세부 개발 예정
+     ============================================================ */
+  gpFunds: [
+    {
+      id: "uam", name: "한화 차세대 UAM 인프라 펀드", cat: "Aerospace / Infra",
+      status: "모집중", aum: 360, target: 500,
+      investors: [
+        { name: "대성홀딩스㈜", type: "법인", stage: "가입완료", amount: 80 },
+        { name: "신고려관광㈜", type: "법인", stage: "가입희망", amount: 30 },
+        { name: "박OO 패밀리오피스", type: "개인", stage: "가입완료", amount: 20 },
+        { name: "이OO 개인투자자", type: "개인", stage: "가입희망", amount: 0 },
+      ],
+      portfolio: [
+        { id: "p1", name: "한화에어로스페이스 UAM", sector: "Aerospace", lastReport: "2026-05-30" },
+        { id: "p2", name: "북미 이스캡 인프라", sector: "Infra", lastReport: null },
+      ],
+    },
+    {
+      id: "essmz", name: "북미 클린에너지 ESS 메자닌", cat: "Clean Energy",
+      status: "모집중", aum: 210, target: 300,
+      investors: [
+        { name: "대성홀딩스㈜", type: "법인", stage: "가입희망", amount: 0 },
+        { name: "이OO 개인투자자", type: "개인", stage: "가입완료", amount: 15 },
+      ],
+      portfolio: [
+        { id: "p3", name: "텍사스 ESS 배터리 시스템", sector: "Clean Energy", lastReport: "2026-06-12" },
+        { id: "p4", name: "애리조나 태양광 저장", sector: "Clean Energy", lastReport: null },
+      ],
+    },
+    {
+      id: "fintech", name: "동남아 핀테크 그로스 에쿼티", cat: "Growth Equity",
+      status: "클로즈드", aum: 480, target: 480,
+      investors: [
+        { name: "삼성전자㈜", type: "법인", stage: "가입완료", amount: 200 },
+        { name: "카카오㈜", type: "법인", stage: "가입완료", amount: 100 },
+      ],
+      portfolio: [
+        { id: "p5", name: "자카르타 디지털 뱅킹", sector: "Fintech", lastReport: "2026-04-20" },
+      ],
+    },
+  ],
+
+  /* ============================================================
+     개인투자(HNW) 딜 — 해외 비상장 기업 SPV 투자 (목업)
+     실제로는 기업 지분을 직접 보유하는 것이 아니라, Babel이 결성한
+     단일 종목 SPV(특수목적기구)의 지분을 취득하는 구조
+     ============================================================ */
+  hnwDeals: [
+    {
+      id: "openai", name: "OpenAI", tag: "AI · Series G", sector: "인공지능",
+      badge: "인기", accent: "var(--mint)",
+      valuation: 3000000, minInvest: 5000, filled: 68, demoReturn: 12.4,
+      desc: "차세대 파운데이션 모델을 개발하는 AI 리서치·제품 기업. 후속 라운드(Series G) 참여 물량을 SPV로 재분할합니다.",
+      structureSteps: [
+        "고객님이 Babel SPV에 투자금을 맡겨요",
+        "SPV가 OpenAI 세컨더리 지분을 매입해요",
+        "고객님은 SPV 지분을 비율대로 보유해요",
+      ],
+      qa: {
+        "정말 OpenAI 주식을 갖게 되나요?": "아니요. OpenAI 주식은 SPV(특수목적기구)가 보유하고, 고객님은 그 SPV의 지분을 보유합니다. 법적 권리는 SPV를 통해 간접적으로 행사돼요.",
+        "언제 현금화할 수 있나요?": "비상장 지분이라 상장(IPO)이나 세컨더리 매각 전까지는 유동성이 제한적이에요. 포트폴리오에서 매도 신청은 가능하지만 체결까지 시간이 걸릴 수 있습니다.",
+        "손실 위험은 없나요?": "있습니다. 비상장 기업가치 평가는 확정된 게 아니라 변동될 수 있고, 최악의 경우 투자금 전액 손실도 가능합니다.",
+      },
+      history: [
+        { when: "3일 전", text: "OpenAI가 신모델을 출시했어요. 주간 활성 사용자가 5억 명을 넘었습니다.", tone: "up" },
+        { when: "2주 전", text: "직전 라운드 대비 SPV 평가가치가 소폭 상향 조정되었습니다.", tone: "up" },
+      ],
+    },
+    {
+      id: "spacex", name: "SpaceX", tag: "Aerospace · Tender Offer", sector: "우주항공",
+      badge: "마감임박", accent: "var(--blue)",
+      valuation: 2100000, minInvest: 8000, filled: 82, demoReturn: -3.2,
+      desc: "재사용 발사체·스타링크를 운영하는 우주항공 기업. 정기 텐더오퍼(자사주 매입) 물량을 SPV로 재분할합니다.",
+      structureSteps: [
+        "고객님이 Babel SPV에 투자금을 맡겨요",
+        "SPV가 텐더오퍼 물량의 SpaceX 지분을 매입해요",
+        "고객님은 SPV 지분을 비율대로 보유해요",
+      ],
+      qa: {
+        "텐더오퍼가 뭔가요?": "회사가 정기적으로 기존 주주·직원의 지분 일부를 정해진 가격에 사들이는 절차예요. Babel은 이 물량 중 일부를 SPV로 받아옵니다.",
+        "세금은 어떻게 되나요?": "SPV 지분 매각 차익에 대해 국내 세법상 양도소득세가 발생할 수 있어요. 매도 시 세무 정리 화면에서 예상 세액을 안내해 드립니다.",
+      },
+      history: [
+        { when: "1주 전", text: "스타십 최신 시험 발사가 성공적으로 완료됐어요.", tone: "up" },
+        { when: "1개월 전", text: "다음 텐더오퍼 일정이 잠정 연기되어 유동성 확보가 다소 지연될 수 있어요.", tone: "warn" },
+      ],
+    },
   ],
 };

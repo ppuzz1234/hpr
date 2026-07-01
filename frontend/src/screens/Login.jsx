@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { loginWithNaver } from "../auth/naver.js";
+import BrandMark from "../components/BrandMark.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -41,10 +42,10 @@ export default function Login() {
     <div className="onb">
       <div className="onb-inner login">
         <header className="login-brand">
-          <div className="splash-mark sm">PPR</div>
+          <div className="splash-mark sm"><BrandMark size={24} /></div>
           <div className="login-titles">
-            <strong>PLUS Private Room</strong>
-            <span>검증된 가문만의 폐쇄형 자본 플랫폼</span>
+            <strong>PLUS Babel</strong>
+            <span>Private Deal 해외비상장 투자 플랫폼</span>
           </div>
         </header>
 
@@ -88,7 +89,7 @@ export default function Login() {
         </div>
 
         <button className="login-foot-link" onClick={() => proceed("guest", { guest: true })}>
-          이미 PPR 회원이신가요? <b>로그인하세요</b>
+          이미 Babel 회원이신가요? <b>로그인하세요</b>
         </button>
       </div>
     </div>

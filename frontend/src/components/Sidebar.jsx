@@ -1,14 +1,15 @@
 import { NavLink, Link } from "react-router-dom";
 import { NAV } from "../utils.js";
+import BrandMark from "./BrandMark.jsx";
 
 export default function Sidebar({ open, onNavigate }) {
   return (
     <aside className={"sidebar" + (open ? " open" : "")}>
       <Link to="/" className="brand" onClick={onNavigate}>
-        <div className="brand-mark">PPR</div>
+        <div className="brand-mark"><BrandMark size={22} /></div>
         <div className="brand-name">
           <strong>PLUS</strong>
-          <span>Private Room</span>
+          <span>Babel</span>
         </div>
       </Link>
 

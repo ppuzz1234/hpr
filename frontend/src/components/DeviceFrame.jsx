@@ -36,7 +36,7 @@ export default function DeviceFrame() {
         <div className="device">
           <div className="screen">
             <div className="island" />
-            <iframe src="/" title="PLUS Private Room" />
+            <iframe src="/" title="PLUS Babel" />
           </div>
           <span className="btn-side b-action" />
           <span className="btn-side b-volup" />
@@ -46,7 +46,7 @@ export default function DeviceFrame() {
         </div>
       </div>
       <div className="caption">
-        <div className="t"><b>iPhone 17 Pro</b> · PLUS Private Room Simulator</div>
+        <div className="t"><b>iPhone 17 Pro</b> · PLUS Babel Simulator</div>
         <a href="/">전체 화면(브라우저)으로 열기 →</a>
       </div>
     </div>

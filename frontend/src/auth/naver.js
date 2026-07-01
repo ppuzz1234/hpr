@@ -35,7 +35,7 @@ function demoProfile() {
     demo: true,
     name: "네이버 사용자",
     email: "investor@naver.com",
-    nickname: "PPR Member",
+    nickname: "Babel Member",
   };
 }
 
