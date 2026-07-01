@@ -207,6 +207,7 @@ body {
 
 /* metric tiles */
 .metric { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px; }
+.metric.sel { border-color: var(--mint); background: rgba(52,224,196,.08); box-shadow: 0 0 0 1px var(--mint) inset; }
 .metric .label { font-size: 12px; color: var(--txt-2); display: flex; align-items: center; gap: 6px; }
 .metric .value { font-size: 26px; font-weight: 800; margin-top: 9px; letter-spacing: -.5px; }
 .metric .value.mint { color: var(--mint); }
@@ -293,15 +294,25 @@ body {
 .slider-row { margin-bottom: 22px; }
 .slider-row .lab { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 9px; }
 .slider-row .lab b { color: var(--mint); }
-input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 10px; background: var(--panel-2); outline: none; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--mint); cursor: pointer; box-shadow: 0 0 0 4px rgba(52,224,196,.18); }
-input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; border-radius: 50%; background: var(--mint); cursor: pointer; }
+input[type=range] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 10px;
+  background: var(--panel-2); border: 1px solid var(--line); outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; margin-top: -1px;
+  background: var(--mint); cursor: pointer; border: 2px solid #0b1a17; box-shadow: 0 0 0 5px rgba(52,224,196,.22);
+}
+input[type=range]::-moz-range-thumb {
+  width: 22px; height: 22px; border: 2px solid #0b1a17; border-radius: 50%;
+  background: var(--mint); cursor: pointer; box-shadow: 0 0 0 5px rgba(52,224,196,.22);
+}
 
 /* steps / builder list */
 .build-step { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line-soft); }
 .build-step:last-child { border-bottom: none; }
 .build-step .no { width: 28px; height: 28px; border-radius: 50%; background: var(--panel-2); border: 1px solid var(--line); display: grid; place-items: center; font-size: 12px; font-weight: 700; flex-shrink: 0; color: var(--txt-2); }
 .build-step.done .no { background: var(--mint); border-color: var(--mint); color: #04201b; }
+.build-step.active .no { background: var(--amber); border-color: var(--amber); color: #2a1c02; }
 .build-step h5 { font-size: 13.5px; }
 .build-step p { font-size: 12px; color: var(--txt-2); margin-top: 4px; line-height: 1.55; }
 .build-step .meta { font-size: 11px; color: var(--txt-3); margin-top: 6px; }
@@ -376,7 +387,7 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
 .row.between { justify-content: space-between; }
 .row.wrap { flex-wrap: wrap; }
 .muted { color: var(--txt-2); font-size: 13px; line-height: 1.6; }
-.tiny { font-size: 11px; color: var(--txt-3); }
+.tiny { font-size: 12px; color: var(--txt-2); line-height: 1.5; }
 .divider { height: 1px; background: var(--line); margin: 22px 0; }
 .flag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; background: var(--panel-2); border: 1px solid var(--line); padding: 5px 11px; border-radius: 8px; }
 .status-line { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--txt-2); }
@@ -625,11 +636,8 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
 .sso-btn:hover:not(:disabled) { border-color: var(--mint-dim); background: var(--panel-2); }
 .sso-btn:disabled { opacity: .6; cursor: progress; }
 .sso-ic { width: 22px; height: 22px; display: grid; place-items: center; flex-shrink: 0; font-weight: 800; }
-.sso-btn.naver { background: #03C75A; border-color: #03C75A; color: #fff; }
-.sso-btn.naver:hover:not(:disabled) { background: #02b350; border-color: #02b350; }
-.naver-ic { background: #fff; color: #03C75A; border-radius: 5px; font-size: 14px; }
-.amazon-ic { color: #FF9900; font-size: 20px; }
-.apple-ic { color: var(--txt); font-size: 18px; }
+.naver-ic { background: #03C75A; color: #fff; border-radius: 5px; font-size: 14px; }
+.kakao-ic { background: #FEE500; color: #3C1E1E; border-radius: 5px; }
 .login-foot-link {
   display: block; width: 100%; text-align: center; margin-top: 26px;
   background: none; border: none; color: var(--txt-2); font-size: 13px; font-family: inherit; cursor: pointer;
@@ -659,6 +667,18 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
 .ut-caret { margin-left: auto; color: var(--txt-3); font-size: 22px; flex-shrink: 0; }
 .ut-foot { text-align: center; font-size: 12px; color: var(--txt-3); margin-top: 24px; }
 
+/* 전문투자자 자격 확인 방법 카드 — 아이콘/캐럿 행 + 배지 + 체크리스트 */
+.hnw-verify-list { display: flex; flex-direction: column; gap: 12px; }
+.hnw-verify-card {
+  display: block; width: 100%; text-align: left; font-family: inherit; color: var(--txt);
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  padding: 16px; cursor: pointer; transition: .16s;
+}
+.hnw-verify-card:hover { border-color: var(--mint); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,.3); }
+.hnw-verify-steps { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 6px; }
+.hnw-verify-step { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--txt-2); }
+.hnw-verify-step span { color: var(--mint); font-weight: 700; flex-shrink: 0; }
+
 /* 최상위 타입선택(투자자/운용사) — 상하 2개 대형 영역 */
 .ut-big-list { display: flex; flex-direction: column; gap: 16px; }
 .ut-big-card {
@@ -677,26 +697,17 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
 .ut-big-card strong { font-size: 19px; font-weight: 800; letter-spacing: -.2px; }
 .ut-big-desc { font-size: 13px; color: var(--txt-2); line-height: 1.6; max-width: 300px; }
 
-/* ---------------- Welcome (LP/GP/Angel landing) ---------------- */
+/* ---------------- Welcome (개인투자 HNW 랜딩) — 아이콘 + 제목 + 설명만 남긴 단순 구성 ---------------- */
 .welcome { padding-bottom: 20px; }
-.wl-hero { margin-bottom: 26px; }
-.wl-title { font-size: 27px; font-weight: 900; letter-spacing: -.7px; line-height: 1.18; margin-top: 12px; }
-.wl-sub { font-size: 13.5px; color: var(--txt-2); line-height: 1.7; margin-top: 16px; }
-.wl-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 22px; }
-.wl-stat { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
-.wl-stat .n { font-size: 24px; font-weight: 800; letter-spacing: -.5px; }
-.wl-stat .l { font-size: 11.5px; color: var(--txt-2); margin-top: 5px; }
-.wl-feats { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
-.wl-feat {
-  display: flex; gap: 14px; align-items: flex-start;
-  background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px;
+.wl-hero { margin-bottom: 30px; }
+.wl-icon {
+  width: 64px; height: 64px; margin: 0 auto 22px; border-radius: 18px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, rgba(52,224,196,.14), rgba(52,224,196,.03));
+  border: 1px solid rgba(52,224,196,.22);
 }
-.wl-feat-ic {
-  font-size: 18px; width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px;
-  display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--line);
-}
-.wl-feat strong { font-size: 14px; }
-.wl-feat p { font-size: 12.5px; color: var(--txt-2); line-height: 1.55; margin-top: 4px; }
+.wl-title { font-size: 25px; font-weight: 900; letter-spacing: -.6px; line-height: 1.3; }
+.wl-sub { font-size: 13.5px; color: var(--txt-2); line-height: 1.7; margin-top: 14px; }
 .wl-cta { padding: 15px; font-size: 15px; }
 
 /* ---------------- CompanySearch ---------------- */
@@ -770,11 +781,6 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
   padding: 0 20px; border-bottom: 1px solid var(--line);
 }
 .hnw-topbar span { flex: 1; font-size: 13px; font-weight: 700; color: var(--txt-2); }
-.hnw-exit {
-  background: none; border: 1px solid var(--line); border-radius: 20px; padding: 6px 12px;
-  font-size: 11.5px; color: var(--txt-2); cursor: pointer; font-family: inherit; transition: .15s;
-}
-.hnw-exit:hover { border-color: var(--mint-dim); color: var(--txt); }
 .hnw-tabbar {
   flex-shrink: 0; display: flex;
   background: rgba(17,22,29,.94); backdrop-filter: blur(16px);
@@ -786,11 +792,18 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: none; b
 }
 .hnw-tab span { font-size: 18px; }
 .hnw-tab.active { color: var(--mint); }
+.hnw-bell { font-size: 20px; }
+.hnw-home-summary { width: 100%; text-align: left; cursor: pointer; font-family: inherit; color: var(--txt); }
 
-/* HNW 딜 카드 배너 — Step3 클럽딜의 .deal-banner(그라디언트 배지형)와 달리
-   단색 · 스테이지+설명만 보여주는 축소형이라 별도 클래스로 둔다 */
-.hnw-deal-banner { background: var(--panel-2); border-bottom: 1px solid var(--line-soft); border-left: 3px solid var(--mint); padding: 12px 16px; }
-.hnw-deal-banner .stage { font-size: 10.5px; font-weight: 800; letter-spacing: .5px; color: var(--mint); text-transform: uppercase; }
+/* HNW 딜 카드 — Step3 클럽딜의 .deal-card/.deal-banner(그라디언트 배지형)와 달리
+   배경 대비를 키운 단색 카드 + 스테이지·설명만 보여주는 축소형 배너라 별도 클래스로 둔다 */
+.hnw-deal-card {
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 16px;
+  overflow: hidden; transition: .18s; box-shadow: 0 8px 22px rgba(0,0,0,.35);
+}
+.hnw-deal-card:hover { border-color: var(--mint-dim); transform: translateY(-2px); }
+.hnw-deal-banner { background: var(--panel); border-bottom: 1px solid var(--line-soft); padding: 12px 16px; }
+.hnw-deal-banner .stage { font-size: 10.5px; font-weight: 900; font-style: italic; letter-spacing: 1px; text-transform: uppercase; }
 .hnw-deal-banner .desc { font-size: 12px; color: var(--txt-2); line-height: 1.5; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
 /* ============================================================

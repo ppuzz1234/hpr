@@ -9,11 +9,13 @@ import InvestorType from "./screens/InvestorType.jsx";
 import Welcome from "./screens/Welcome.jsx";
 import HnwAbout from "./screens/HnwAbout.jsx";
 import HnwSignup from "./screens/HnwSignup.jsx";
-import HnwIdentity from "./screens/HnwIdentity.jsx";
+import HnwVerifyDetail from "./screens/HnwVerifyDetail.jsx";
 import HnwShell from "./components/HnwShell.jsx";
 import HnwHome from "./screens/HnwHome.jsx";
+import HnwInvest from "./screens/HnwInvest.jsx";
 import HnwDealDetail from "./screens/HnwDealDetail.jsx";
 import HnwPortfolio from "./screens/HnwPortfolio.jsx";
+import HnwMenu from "./screens/HnwMenu.jsx";
 import CompanySearch from "./screens/CompanySearch.jsx";
 import GPDashboard from "./screens/GPDashboard.jsx";
 import Home from "./screens/Home.jsx";
@@ -41,15 +43,17 @@ export default function App() {
         <Route path="/welcome/:type" element={<Welcome />} />
         <Route path="/welcome/hnw/about" element={<HnwAbout />} />
         <Route path="/welcome/hnw/signup" element={<HnwSignup />} />
-        <Route path="/welcome/hnw/identity" element={<HnwIdentity />} />
+        <Route path="/welcome/hnw/signup/:method" element={<HnwVerifyDetail />} />
         <Route path="/institution/search" element={<CompanySearch />} />
         <Route path="/gp/dashboard" element={<GPDashboard />} />
 
         {/* 개인투자(HNW) 딜 콘솔 — 기관 FCF 여정과 무관한 독립 셸 */}
         <Route path="/hnw" element={<HnwShell />}>
           <Route index element={<HnwHome />} />
+          <Route path="invest" element={<HnwInvest />} />
           <Route path="deal/:id" element={<HnwDealDetail />} />
           <Route path="portfolio" element={<HnwPortfolio />} />
+          <Route path="menu" element={<HnwMenu />} />
         </Route>
 
         {/* 앱 본체 (진입 게이트 통과 후) */}

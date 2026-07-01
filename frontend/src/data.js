@@ -340,23 +340,32 @@ export const DB = {
       ],
     },
     {
-      id: "spacex", name: "SpaceX", tag: "Aerospace · Tender Offer", sector: "우주항공",
-      badge: "마감임박", accent: "var(--blue)",
-      valuation: 2100000, minInvest: 8000, filled: 82, demoReturn: -3.2,
-      desc: "재사용 발사체·스타링크를 운영하는 우주항공 기업. 정기 텐더오퍼(자사주 매입) 물량을 SPV로 재분할합니다.",
+      id: "anthropic", name: "Anthropic", tag: "AI · Series F", sector: "인공지능",
+      badge: "신규", accent: "var(--violet)",
+      valuation: 1830000, minInvest: 6000, filled: 55, demoReturn: 8.1,
+      desc: "안전성 중심의 AI 모델 Claude를 개발하는 AI 리서치 기업. 최신 라운드(Series F) 참여 물량을 SPV로 재분할합니다.",
       structureSteps: [
         "고객님이 Babel SPV에 투자금을 맡겨요",
-        "SPV가 텐더오퍼 물량의 SpaceX 지분을 매입해요",
+        "SPV가 Anthropic 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
       qa: {
-        "텐더오퍼가 뭔가요?": "회사가 정기적으로 기존 주주·직원의 지분 일부를 정해진 가격에 사들이는 절차예요. Babel은 이 물량 중 일부를 SPV로 받아옵니다.",
-        "세금은 어떻게 되나요?": "SPV 지분 매각 차익에 대해 국내 세법상 양도소득세가 발생할 수 있어요. 매도 시 세무 정리 화면에서 예상 세액을 안내해 드립니다.",
+        "정말 Anthropic 주식을 갖게 되나요?": "아니요. Anthropic 주식은 SPV(특수목적기구)가 보유하고, 고객님은 그 SPV의 지분을 보유합니다. 법적 권리는 SPV를 통해 간접적으로 행사돼요.",
+        "OpenAI랑 무슨 차이가 있나요?": "둘 다 최상위 AI 모델 기업이지만 투자 라운드·기업가치·성장 곡선이 달라요. 포트폴리오 분산 차원에서 함께 담는 투자자가 많아요.",
+        "손실 위험은 없나요?": "있습니다. 비상장 기업가치 평가는 확정된 게 아니라 변동될 수 있고, 최악의 경우 투자금 전액 손실도 가능합니다.",
       },
       history: [
-        { when: "1주 전", text: "스타십 최신 시험 발사가 성공적으로 완료됐어요.", tone: "up" },
-        { when: "1개월 전", text: "다음 텐더오퍼 일정이 잠정 연기되어 유동성 확보가 다소 지연될 수 있어요.", tone: "warn" },
+        { when: "5일 전", text: "Anthropic이 Claude 신규 모델을 출시했어요. 기업용 계약이 크게 늘었습니다.", tone: "up" },
+        { when: "3주 전", text: "신규 투자 라운드 참여 수요가 몰려 배정 물량이 조기 마감됐어요.", tone: "up" },
       ],
     },
+  ],
+
+  /* 홈 탭 · 글로벌 투자 시의성 뉴스 카드 (목업) */
+  hnwNews: [
+    { tag: "글로벌 AI", when: "3시간 전", title: "OpenAI, 신규 모델 발표 임박 — 후속 라운드 밸류에이션 주목" },
+    { tag: "매크로", when: "오늘", title: "미 연준 금리 동결 — 비상장 성장주 밸류에이션 영향은?" },
+    { tag: "Anthropic", when: "1일 전", title: "Anthropic, 신규 투자 라운드 클로징 임박 소식" },
+    { tag: "세컨더리", when: "2일 전", title: "빅테크 세컨더리 거래량 3분기 연속 증가" },
   ],
 };
