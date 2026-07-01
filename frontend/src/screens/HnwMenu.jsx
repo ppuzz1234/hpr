@@ -1,6 +1,6 @@
 import { useApp } from "../context/AppContext.jsx";
 
-/* "전체" 탭 — 개인 설정 및 전체 메뉴. 테마는 버튼만(추후 구현), 역할 변경은 기존 기능 유지 */
+/* "전체" 탭 — 개인 설정 및 전체 메뉴. 역할 변경은 기존 기능 유지 */
 const MENU = [
   "알림 설정",
   "결제 · 계좌 관리",
@@ -9,7 +9,7 @@ const MENU = [
 ];
 
 export default function HnwMenu() {
-  const { reset, auth } = useApp();
+  const { reset, auth, theme, setTheme } = useApp();
   const name = auth.user?.name || auth.user?.nickname || "고객";
 
   return (
@@ -21,7 +21,14 @@ export default function HnwMenu() {
 
       <div className="card">
         <div className="card-title">화면 테마</div>
-        <button className="btn btn-line btn-block mt-16">테마 변경</button>
+        <div className="theme-toggle">
+          <button className={"theme-opt" + (theme === "light" ? " active" : "")} onClick={() => setTheme("light")}>
+            ☀ 라이트
+          </button>
+          <button className={"theme-opt" + (theme === "dark" ? " active" : "")} onClick={() => setTheme("dark")}>
+            ☾ 다크
+          </button>
+        </div>
       </div>
 
       <div className="card mt-16">

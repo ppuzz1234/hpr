@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useEffect } from "react";
 import { DB, companies as seedCompanies, companyOrder as seedOrder, defaultCompanyId, buildCompany } from "../data.js";
 
 const AppContext = createContext(null);
@@ -7,6 +7,16 @@ export const useApp = () => useContext(AppContext);
 let _id = 0;
 
 export function AppProvider({ children }) {
+  // ----- 화면 테마 (라이트/다크) — 선택값은 로컬 저장소에 유지 -----
+  const [theme, setThemeState] = useState(() => localStorage.getItem("babel-theme") || "light");
+  const setTheme = useCallback((t) => {
+    setThemeState(t);
+    localStorage.setItem("babel-theme", t);
+  }, []);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   // ----- 진입 게이트 (스플래시 → 로그인 → 타입선택 → 입장) -----
   // entered=false 이면 앱 본체(/) 접근 시 스플래시로 리다이렉트
   const [auth, setAuth] = useState({ entered: false, user: null, provider: null });
@@ -75,6 +85,7 @@ export function AppProvider({ children }) {
   const closeModal = useCallback(() => setModal(null), []);
 
   const value = {
+    theme, setTheme,
     auth, signIn, enter, reset,
     userType, setUserType,
     companies, companyOrder,
