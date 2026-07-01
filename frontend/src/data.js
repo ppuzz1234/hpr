@@ -359,6 +359,71 @@ export const DB = {
         { when: "3주 전", text: "신규 투자 라운드 참여 수요가 몰려 배정 물량이 조기 마감됐어요.", tone: "up" },
       ],
     },
+    /* 아래 3개 종목은 EquityZen 등 세컨더리 마켓 대표 프리IPO 기업.
+       기업가치·라운드는 공개 보도(2026-07 기준) 인용, accent는 각 기업 BI 컬러.
+       - Stripe:     2026-02 테너오퍼 $159B (직전 $91.5B 대비 +74%) — CNBC/TechCrunch
+       - Databricks: 2026-02 라운드 $134B (직전 Series K $100B 대비 +34%) — CNBC
+       - Anduril:    2026-05 Series H $61B (직전 $30.5B 대비 2배) — TechCrunch/CNBC */
+    {
+      id: "stripe", name: "Stripe", tag: "핀테크 · Secondary", sector: "핀테크·결제",
+      badge: "인기", accent: "#635BFF", icon: "💳",
+      valuation: 1590000, minInvest: 7000, filled: 72, demoReturn: 9.8, roundChange: 73.8,
+      desc: "온라인 결제 인프라를 제공하는 글로벌 핀테크. 2026년 2월 임직원 대상 테너오퍼에서 $159B(약 159조원) 가치로 평가된 세컨더리 물량을 SPV로 재분할합니다.",
+      structureSteps: [
+        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "SPV가 Stripe 세컨더리 지분을 매입해요",
+        "고객님은 SPV 지분을 비율대로 보유해요",
+      ],
+      qa: {
+        "Stripe는 언제 상장하나요?": "확정된 IPO 일정은 공개되지 않았어요. 상장 전까지는 테너오퍼·세컨더리 거래로만 유동성이 형성됩니다.",
+        "왜 기업가치가 크게 올랐나요?": "2026년 2월 테너오퍼 기준 $159B로, 1년 전 $91.5B 대비 약 74% 상승했습니다(CNBC·TechCrunch 보도).",
+        "손실 위험은 없나요?": "있습니다. 비상장 지분 평가가치는 변동될 수 있고, 최악의 경우 투자금 전액 손실도 가능합니다.",
+      },
+      history: [
+        { when: "최근", text: "2026년 2월 테너오퍼에서 기업가치가 $159B로 1년 전($91.5B) 대비 74% 상승했습니다.", tone: "up" },
+        { when: "2025년", text: "연간 총결제액(TPV)이 1.9조 달러로 전년 대비 34% 증가했습니다.", tone: "up" },
+      ],
+    },
+    {
+      id: "databricks", name: "Databricks", tag: "데이터·AI · Series K", sector: "데이터·AI 플랫폼",
+      badge: "신규", accent: "#FF3621", icon: "🧱",
+      valuation: 1340000, minInvest: 6500, filled: 61, demoReturn: 11.2, roundChange: 34.0,
+      desc: "레이크하우스 기반 데이터·AI 플랫폼 기업. 2026년 2월 $5B 규모 펀딩에서 $134B(약 134조원) 가치로 평가된 물량을 SPV로 재분할합니다.",
+      structureSteps: [
+        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "SPV가 Databricks 세컨더리 지분을 매입해요",
+        "고객님은 SPV 지분을 비율대로 보유해요",
+      ],
+      qa: {
+        "무슨 사업을 하나요?": "데이터 저장·분석과 AI 모델 개발을 한 곳에서 처리하는 레이크하우스 플랫폼을 제공합니다. Agent Bricks·Lakebase 등으로 AI 사업을 확장 중이에요.",
+        "기업가치 근거가 뭔가요?": "2026년 2월 $5B 펀딩 마감 기준 $134B로, 직전 Series K($100B) 대비 약 34% 상향됐습니다(CNBC 보도).",
+        "손실 위험은 없나요?": "있습니다. 비상장 지분 평가가치는 변동될 수 있고, 최악의 경우 투자금 전액 손실도 가능합니다.",
+      },
+      history: [
+        { when: "최근", text: "2026년 2월 $5B 펀딩을 마감하며 기업가치가 $134B로 상향(직전 $100B 대비 +34%)됐습니다.", tone: "up" },
+        { when: "2025년", text: "연간 매출 런레이트 $4B를 돌파했고, AI 매출 런레이트도 $1B을 넘었습니다.", tone: "up" },
+      ],
+    },
+    {
+      id: "anduril", name: "Anduril", tag: "방위테크 · Series H", sector: "방위산업 테크",
+      badge: "마감임박", accent: "#8792A6", icon: "🛡️",
+      valuation: 610000, minInvest: 8000, filled: 44, demoReturn: 7.5, roundChange: 100.0,
+      desc: "자율 방위 시스템과 Lattice 플랫폼을 개발하는 방위테크 기업. 2026년 5월 Series H($5B)에서 $61B(약 61조원) 가치로 직전 대비 두 배 평가된 물량을 SPV로 재분할합니다.",
+      structureSteps: [
+        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "SPV가 Anduril 세컨더리 지분을 매입해요",
+        "고객님은 SPV 지분을 비율대로 보유해요",
+      ],
+      qa: {
+        "무슨 사업을 하나요?": "드론·자율 무기 체계와 이를 통합하는 AI 소프트웨어 Lattice를 개발하는 방위산업 스타트업입니다.",
+        "성장 근거가 뭔가요?": "2026년 5월 Series H($5B)에서 기업가치가 $61B로 직전($30.5B) 대비 두 배가 됐고, 미 육군 IVAS 프로그램(최대 $220억)을 인수했습니다(TechCrunch·CNBC 보도).",
+        "손실 위험은 없나요?": "있습니다. 비상장 지분 평가가치는 변동될 수 있고, 방위 예산·규제 영향도 커 투자금 전액 손실이 가능합니다.",
+      },
+      history: [
+        { when: "최근", text: "2026년 5월 Series H에서 $5B를 유치하며 기업가치가 $61B로 직전($30.5B) 대비 두 배가 됐습니다.", tone: "up" },
+        { when: "2026년", text: "미 육군의 IVAS 프로그램(최대 $220억 규모) 운영을 인수했습니다.", tone: "up" },
+      ],
+    },
   ],
 
   /* 홈 탭 · 글로벌 투자 시의성 뉴스 카드 (목업) */

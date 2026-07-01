@@ -876,6 +876,18 @@ input[type=range]::-moz-range-thumb {
 .deal-change b.up { color: var(--red); }
 .deal-change b.down { color: var(--blue); }
 
+/* 모집 약정 진행률 — 위쪽 등락 표시와 분리, 진행률에 따라 색/문구 변화 */
+.deal-raise { margin-top: 14px; }
+.deal-raise-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.deal-raise .commit-bar { margin-top: 0; }
+.raise-pct { font-size: 11px; font-weight: 700; color: var(--txt-3); }
+.raise-status { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; letter-spacing: .2px; }
+.raise-status.hot { color: var(--red); background: color-mix(in srgb, var(--red) 15%, transparent); }
+.raise-status.on { color: var(--mint-dim); background: color-mix(in srgb, var(--mint) 15%, transparent); }
+.raise-status.early { color: var(--txt-2); background: var(--panel); }
+.commit-bar.hot i { background: linear-gradient(90deg, var(--amber), var(--red)); }
+.commit-bar.early i { background: var(--txt-3); }
+
 /* ============================================================
    Device simulator (route: /device) — iPhone 17 Pro frame
    ============================================================ */

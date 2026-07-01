@@ -17,6 +17,9 @@ export default function HnwInvest() {
       <div className="grid g-2">
         {DB.hnwDeals.map((d) => {
           const up = d.roundChange >= 0;
+          const stage = d.filled >= 70 ? { label: "마감 임박", cls: "hot" }
+            : d.filled >= 40 ? { label: "모집 중", cls: "on" }
+            : { label: "모집 초기", cls: "early" };
           return (
             <div className="hnw-deal-card" key={d.id} onClick={() => navigate(`/hnw/deal/${d.id}`)}>
               <div className="deal-head">
@@ -42,7 +45,13 @@ export default function HnwInvest() {
                 <b className={up ? "up" : "down"}>{up ? "+" : ""}{d.roundChange.toFixed(2)}%</b>
               </div>
 
-              <div className="commit-bar"><i style={{ width: d.filled + "%" }} /></div>
+              <div className="deal-raise">
+                <div className="deal-raise-head">
+                  <span className={"raise-status " + stage.cls}>{stage.label}</span>
+                  <span className="raise-pct">모집 약정 {d.filled}%</span>
+                </div>
+                <div className={"commit-bar " + stage.cls}><i style={{ width: d.filled + "%" }} /></div>
+              </div>
             </div>
           );
         })}
