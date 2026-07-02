@@ -3,7 +3,7 @@ import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 
 /* 전문투자자 자격 확인 — 방법별 세부 화면.
-   세 경로 모두 마지막 버튼을 누르면 "인증 완료" 알림을 띄우고 딜 홈(/hnw)으로 입장한다. */
+   세 경로 모두 마지막 버튼을 누르면 "인증 완료" 알림을 띄우고 관심 산업 선택 화면으로 이동한다. */
 const ROUTE_LABEL = { linked: "경로 A", mydata: "경로 B", consult: "경로 C" };
 const TITLES = {
   linked: "확인증으로 진행하기",
@@ -19,7 +19,7 @@ const CTA = {
 export default function HnwVerifyDetail() {
   const { method } = useParams();
   const navigate = useNavigate();
-  const { setUserType, enter, toast } = useApp();
+  const { toast } = useApp();
   const [consultWay, setConsultWay] = useState(null); // "video" | "branch" | null
 
   if (!TITLES[method]) return <Navigate to="/welcome/hnw/signup" replace />;
@@ -29,11 +29,9 @@ export default function HnwVerifyDetail() {
   const complete = () => {
     toast({
       title: "전문투자자 인증이 완료되었습니다", icon: "✓",
-      body: "이제 모집 중인 투자처를 확인하고 바로 투자를 진행할 수 있어요.",
+      body: "관심 있는 산업을 먼저 골라주시면 딱 맞는 투자처를 보여드려요.",
     });
-    setUserType("hnw");
-    enter();
-    navigate("/hnw/invest", { replace: true });
+    navigate("/welcome/hnw/sector");
   };
 
   return (

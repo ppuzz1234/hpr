@@ -1,4 +1,4 @@
-/* Babell 브랜드 마크 — "Babell"의 한글 발음(바벨)을 헬스 바벨(barbell)로 형상화한 아이콘.
+/* Barbell 브랜드 마크 — 이름 그대로 헬스 바벨(barbell)을 형상화한 아이콘.
    묵직한 범퍼 플레이트를 양쪽에 장착한 로디드 바벨을 형상화.
    브랜드 사각형(.splash-mark / .brand-mark)의 텍스트 글리프 대신 사용 */
 export default function BrandMark({ size = 22 }) {

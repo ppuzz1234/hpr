@@ -10,6 +10,7 @@ import Welcome from "./screens/Welcome.jsx";
 import HnwAbout from "./screens/HnwAbout.jsx";
 import HnwSignup from "./screens/HnwSignup.jsx";
 import HnwVerifyDetail from "./screens/HnwVerifyDetail.jsx";
+import HnwSectorSelect from "./screens/HnwSectorSelect.jsx";
 import HnwShell from "./components/HnwShell.jsx";
 import HnwHome from "./screens/HnwHome.jsx";
 import HnwInvest from "./screens/HnwInvest.jsx";
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/welcome/hnw/about" element={<HnwAbout />} />
         <Route path="/welcome/hnw/signup" element={<HnwSignup />} />
         <Route path="/welcome/hnw/signup/:method" element={<HnwVerifyDetail />} />
+        <Route path="/welcome/hnw/sector" element={<HnwSectorSelect />} />
         <Route path="/institution/search" element={<CompanySearch />} />
         <Route path="/gp/dashboard" element={<GPDashboard />} />
 

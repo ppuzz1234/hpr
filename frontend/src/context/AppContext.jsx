@@ -57,6 +57,9 @@ export function AppProvider({ children }) {
   const [vehicle, setVehicle] = useState({ trust: false, llc: false });
   const [commits, setCommits] = useState({}); // dealId -> 억
 
+  // ----- 개인투자(HNW) 관심 산업(온보딩 중 선택) -----
+  const [sectorInterest, setSectorInterest] = useState(null);
+
   // ----- 개인투자(HNW) 보유 SPV 지분 -----
   const [hnwHoldings, setHnwHoldings] = useState([]); // { dealId, amount(만원), investedAt }
   const invest = useCallback(
@@ -93,6 +96,7 @@ export function AppProvider({ children }) {
     diag, setDiag,
     vehicle, setVehicle,
     commits, setCommits,
+    sectorInterest, setSectorInterest,
     hnwHoldings, invest, exitHolding,
     toasts, toast, dismiss,
     modal, openModal, closeModal,

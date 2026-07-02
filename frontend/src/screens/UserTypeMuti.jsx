@@ -25,7 +25,7 @@ export default function UserType() {
       <div className="onb-inner">
         <header className="ut-head">
           <div className="splash-mark sm"><BrandMark size={24} /></div>
-          <h1 className="ut-title">PLUS Babell에서<br />어떤 역할로 참여하시겠어요?</h1>
+          <h1 className="ut-title">PLUS Barbell에서<br />어떤 역할로 참여하시겠어요?</h1>
         </header>
 
         <div className="ut-big-list">

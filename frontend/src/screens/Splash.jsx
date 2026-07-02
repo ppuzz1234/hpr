@@ -42,8 +42,8 @@ export default function Splash() {
           <line key={"v" + i} x1={i * 100} y1="0" x2={i * 100} y2="874" stroke="#161e27" strokeWidth="1" />
         ))}
         {/* 상승 추세 영역 + 라인 */}
-        <path className="splash-area" d="M0 650 L60 610 L120 560 L175 515 L215 560 L255 545 L305 450 L355 350 L402 250 L402 874 L0 874 Z" fill="url(#sgFill)" />
-        <path className="splash-path" pathLength="1" d="M0 650 L60 610 L120 560 L175 515 L215 560 L255 545 L305 450 L355 350 L402 250" fill="none" stroke="url(#sgLine)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path className="splash-area" d="M0 700 L150 480 L220 540 L402 280 L402 874 L0 874 Z" fill="url(#sgFill)" />
+        <path className="splash-path" pathLength="1" d="M0 700 L150 480 L220 540 L402 280" fill="none" stroke="url(#sgLine)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
 
       <div className="splash-glow" />
@@ -51,13 +51,13 @@ export default function Splash() {
       <div className="splash-core">
         <div className="splash-mark"><BrandMark size={40} /></div>
         <div className="splash-eyebrow">CLOSED · TOP 0.1% MULTI-FAMILY OFFICE</div>
-        <h1 className="splash-title">PLUS<br /><span>BABEL</span></h1>
-        <p className="splash-slogan">법인의 잉여현금을 가문의 영속자본으로.</p>
+        <h1 className="splash-title">PLUS<br /><span>BARBELL</span></h1>
+        <p className="splash-slogan">해외비상장 Private Deal 투자 플랫폼</p>
       </div>
 
       <div className="splash-foot">
         <div className="splash-bar"><i /></div>
-        <span>검증된 가문 법인만 입장하는 폐쇄형 자본 플랫폼</span>
+        <span>검증된 글로벌 비상장 기업 투자 기회를 제공합니다</span>
       </div>
     </div>
   );

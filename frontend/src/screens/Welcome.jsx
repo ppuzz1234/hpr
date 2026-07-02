@@ -7,8 +7,8 @@ import { useApp } from "../context/AppContext.jsx";
 const LANDINGS = {
   hnw: {
     icon: "bank",
-    title: "해외 비상장 기업에,\n개인 자격으로 투자하세요.",
-    sub: "OpenAI, Anthropic 같은 비상장 기업의 지분을 담은 SPV에 투자할 수 있는 전문투자자 전용 서비스예요.",
+    title: "글로벌 비상장 벤처 투자,\n 이제 Barbell로 시작하세요",
+    sub: "대기업 또는 기관에서만 접근할 수 있었던 숨겨진 투자의 기회,\nPLUS Barbell의 검증된 금융 역량을 활용하여 안전하게 투자하세요.",
     accent: "var(--mint)",
     cta: "투자자격 확인하기",
     nextTo: "/welcome/hnw/signup",
@@ -31,14 +31,14 @@ export default function Welcome() {
   };
 
   return (
-    <div className="onb scroll">
+    <div className="onb">
       <div className="onb-inner welcome">
-        <button className="onb-back" onClick={() => navigate("/investor-type")}>‹ 투자자 유형 다시 선택</button>
+        {/* <button className="onb-back" onClick={() => navigate("/investor-type")}>‹ 투자자 유형 다시 선택</button> */}
 
         <div className="wl-hero" style={{ "--acc": cfg.accent, textAlign: "center" }}>
           <div className="wl-icon" style={{ color: cfg.accent }}>{ICONS[cfg.icon]}</div>
           <h1 className="wl-title">{cfg.title.split("\n").map((l, i) => <span key={i}>{l}<br /></span>)}</h1>
-          {cfg.sub && <p className="wl-sub">{cfg.sub}</p>}
+          {cfg.sub && <p className="wl-sub">{cfg.sub.split("\n").map((l, i) => <span key={i}>{l}<br /></span>)}</p>}
         </div>
 
         <button className="btn btn-primary btn-block wl-cta mt-24" onClick={onEnter}>{cfg.cta} →</button>

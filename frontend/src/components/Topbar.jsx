@@ -18,7 +18,7 @@ export default function Topbar({ onHamburger }) {
         <div className="brand-mark"><BrandMark size={20} /></div>
         <div className="bt">
           <strong>PLUS</strong>
-          <span>BABEL</span>
+          <span>BARBELL</span>
         </div>
       </Link>
 
@@ -27,7 +27,7 @@ export default function Topbar({ onHamburger }) {
           {idx < 0 ? (
             <div className="step-pill">
               <span className="num">◈</span>
-              PLUS Babell · Multi-Family Office Platform
+              PLUS Barbell · Multi-Family Office Platform
             </div>
           ) : (
             STEPS.map((s, i) => (

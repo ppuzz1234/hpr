@@ -1,5 +1,5 @@
 /* ============================================================
-   PLUS Babell — Mock data layer
+   PLUS Barbell — Mock data layer
    회사별 진단 데이터(신고려관광·대성홀딩스) + 공통(어드바이저·딜·포트폴리오)
    향후 백엔드 API(재무 OCR / 평가엔진 / Tranching API)로 대체
    ============================================================ */
@@ -315,17 +315,17 @@ export const DB = {
 
   /* ============================================================
      개인투자(HNW) 딜 — 해외 비상장 기업 SPV 투자 (목업)
-     실제로는 기업 지분을 직접 보유하는 것이 아니라, Babell이 결성한
+     실제로는 기업 지분을 직접 보유하는 것이 아니라, Barbell이 결성한
      단일 종목 SPV(특수목적기구)의 지분을 취득하는 구조
      ============================================================ */
   hnwDeals: [
     {
       id: "openai", name: "OpenAI", tag: "AI · Series G", sector: "인공지능",
       badge: "인기", accent: "var(--mint)", icon: "✨",
-      valuation: 3000000, minInvest: 5000, filled: 68, demoReturn: 12.4, roundChange: 146.2,
+      valuation: 3000000, minInvest: 12000, filled: 68, demoReturn: 12.4, roundChange: 146.2,
       desc: "차세대 파운데이션 모델을 개발하는 AI 리서치·제품 기업. 후속 라운드(Series G) 참여 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "고객님이 Barbell SPV에 투자금을 맡겨요",
         "SPV가 OpenAI 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
@@ -342,10 +342,10 @@ export const DB = {
     {
       id: "anthropic", name: "Anthropic", tag: "AI · Series F", sector: "인공지능",
       badge: "신규", accent: "var(--violet)", icon: "🧠",
-      valuation: 1830000, minInvest: 6000, filled: 55, demoReturn: 8.1, roundChange: 92.7,
+      valuation: 1830000, minInvest: 15000, filled: 55, demoReturn: 8.1, roundChange: 92.7,
       desc: "안전성 중심의 AI 모델 Claude를 개발하는 AI 리서치 기업. 최신 라운드(Series F) 참여 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "고객님이 Barbell SPV에 투자금을 맡겨요",
         "SPV가 Anthropic 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
@@ -367,10 +367,10 @@ export const DB = {
     {
       id: "stripe", name: "Stripe", tag: "핀테크 · Secondary", sector: "핀테크·결제",
       badge: "인기", accent: "#635BFF", icon: "💳",
-      valuation: 1590000, minInvest: 7000, filled: 72, demoReturn: 9.8, roundChange: 73.8,
+      valuation: 1590000, minInvest: 18000, filled: 72, demoReturn: 9.8, roundChange: 73.8,
       desc: "온라인 결제 인프라를 제공하는 글로벌 핀테크. 2026년 2월 임직원 대상 테너오퍼에서 $159B(약 159조원) 가치로 평가된 세컨더리 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "고객님이 Barbell SPV에 투자금을 맡겨요",
         "SPV가 Stripe 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
@@ -387,10 +387,10 @@ export const DB = {
     {
       id: "databricks", name: "Databricks", tag: "데이터·AI · Series K", sector: "데이터·AI 플랫폼",
       badge: "신규", accent: "#FF3621", icon: "🧱",
-      valuation: 1340000, minInvest: 6500, filled: 61, demoReturn: 11.2, roundChange: 34.0,
+      valuation: 1340000, minInvest: 11000, filled: 61, demoReturn: 11.2, roundChange: 34.0,
       desc: "레이크하우스 기반 데이터·AI 플랫폼 기업. 2026년 2월 $5B 규모 펀딩에서 $134B(약 134조원) 가치로 평가된 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "고객님이 Barbell SPV에 투자금을 맡겨요",
         "SPV가 Databricks 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
@@ -407,10 +407,10 @@ export const DB = {
     {
       id: "anduril", name: "Anduril", tag: "방위테크 · Series H", sector: "방위산업 테크",
       badge: "마감임박", accent: "#8792A6", icon: "🛡️",
-      valuation: 610000, minInvest: 8000, filled: 44, demoReturn: 7.5, roundChange: 100.0,
+      valuation: 610000, minInvest: 20000, filled: 44, demoReturn: 7.5, roundChange: 100.0,
       desc: "자율 방위 시스템과 Lattice 플랫폼을 개발하는 방위테크 기업. 2026년 5월 Series H($5B)에서 $61B(약 61조원) 가치로 직전 대비 두 배 평가된 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Babell SPV에 투자금을 맡겨요",
+        "고객님이 Barbell SPV에 투자금을 맡겨요",
         "SPV가 Anduril 세컨더리 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
