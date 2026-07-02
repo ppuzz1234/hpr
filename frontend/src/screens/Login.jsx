@@ -4,6 +4,10 @@ import { useApp } from "../context/AppContext.jsx";
 import { loginWithNaver } from "../auth/naver.js";
 import BrandMark from "../components/BrandMark.jsx";
 
+// BrandMark(animated) 로딩 한 사이클 길이(styles.css의 .bm-plate animation-duration)와 맞춰,
+// 인증 중 오버레이가 최소 1회전을 다 보여줄 때까지는 사라지지 않도록 한다.
+const BRAND_LOOP_MS = 3600;
+
 export default function Login() {
   const navigate = useNavigate();
   const { signIn } = useApp();
@@ -14,7 +18,7 @@ export default function Login() {
 
   const proceed = (provider, user) => {
     signIn(provider, user);
-    navigate("/welcome/hnw");
+    navigate("/welcome/hnw/intro");
   };
 
   const onPhone = (e) => {
@@ -26,24 +30,35 @@ export default function Login() {
   const onNaver = async () => {
     setErr("");
     setBusy("naver");
+    const minWait = new Promise((r) => setTimeout(r, BRAND_LOOP_MS));
     try {
-      const profile = await loginWithNaver();
+      const [profile] = await Promise.all([loginWithNaver(), minWait]);
       proceed("naver", profile);
     } catch (e) {
+      await minWait;
       setErr(e.message || "네이버 로그인에 실패했습니다.");
     } finally {
       setBusy(null);
     }
   };
 
-  // 데모: 외부 SSO(구글/카카오)는 즉시 진입 (실제 연동 지점만 표시)
-  const onSso = (provider) => () => proceed(provider, { provider });
+  // 데모: 외부 SSO(구글/카카오)도 네이버와 동일하게 인증 중 상태를 잠깐 보여준 뒤 진입
+  const onSso = (provider) => async () => {
+    setErr("");
+    setBusy(provider);
+    try {
+      await new Promise((r) => setTimeout(r, BRAND_LOOP_MS));
+      proceed(provider, { provider });
+    } finally {
+      setBusy(null);
+    }
+  };
 
   return (
     <div className="onb">
       <div className="onb-inner login">
         <header className="login-brand">
-          <div className="splash-mark sm"><BrandMark size={24} /></div>
+          <div className="splash-mark sm"><BrandMark size={24}/></div>
           <div className="login-titles">
             <strong>PLUS Barbell</strong>
             <span>해외비상장 Private Deal 투자 플랫폼</span>
@@ -55,17 +70,17 @@ export default function Login() {
         {err && <div className="login-err">{err}</div>}
 
         <div className="sso-list">
-          <button className="sso-btn" onClick={onSso("google")}>
+          <button className="sso-btn" onClick={onSso("google")} disabled={busy === "google"}>
             <span className="sso-ic">{GOOGLE}</span>
-            Google(으)로 계속하기
+            {busy === "google" ? "Google 인증 중…" : "Google(으)로 계속하기"}
           </button>
           <button className="sso-btn" onClick={onNaver} disabled={busy === "naver"}>
             <span className="sso-ic naver-ic">N</span>
             {busy === "naver" ? "네이버 인증 중…" : "네이버로 계속하기"}
           </button>
-          <button className="sso-btn" onClick={onSso("kakao")}>
+          <button className="sso-btn" onClick={onSso("kakao")} disabled={busy === "kakao"}>
             <span className="sso-ic kakao-ic">{KAKAO}</span>
-            카카오로 계속하기
+            {busy === "kakao" ? "카카오 인증 중…" : "카카오로 계속하기"}
           </button>
         </div>
 
@@ -92,6 +107,13 @@ export default function Login() {
           이미 Barbell 회원이신가요? <b>로그인하세요</b>
         </button>
       </div>
+
+      {busy && (
+        <div className="auth-loading-overlay">
+          <BrandMark animated size={64} />
+          <span className="auth-loading-txt">인증 중…</span>
+        </div>
+      )}
     </div>
   );
 }

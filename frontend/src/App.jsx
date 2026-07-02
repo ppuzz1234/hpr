@@ -4,6 +4,7 @@ import Layout from "./components/Layout.jsx";
 import DeviceFrame from "./components/DeviceFrame.jsx";
 import Splash from "./screens/Splash.jsx";
 import Login from "./screens/Login.jsx";
+import HnwStory from "./screens/HnwStory.jsx";
 import UserType from "./screens/UserType.jsx";
 import InvestorType from "./screens/InvestorType.jsx";
 import Welcome from "./screens/Welcome.jsx";
@@ -11,6 +12,7 @@ import HnwAbout from "./screens/HnwAbout.jsx";
 import HnwSignup from "./screens/HnwSignup.jsx";
 import HnwVerifyDetail from "./screens/HnwVerifyDetail.jsx";
 import HnwSectorSelect from "./screens/HnwSectorSelect.jsx";
+import HnwReady from "./screens/HnwReady.jsx";
 import HnwShell from "./components/HnwShell.jsx";
 import HnwHome from "./screens/HnwHome.jsx";
 import HnwInvest from "./screens/HnwInvest.jsx";
@@ -39,12 +41,14 @@ export default function App() {
             → 운용사: 콘솔 대시보드 */}
         <Route path="/splash" element={<Splash />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/welcome/hnw/intro" element={<HnwStory />} />
         <Route path="/welcome" element={<UserType />} />
         <Route path="/investor-type" element={<InvestorType />} />
         <Route path="/welcome/:type" element={<Welcome />} />
         <Route path="/welcome/hnw/about" element={<HnwAbout />} />
         <Route path="/welcome/hnw/signup" element={<HnwSignup />} />
         <Route path="/welcome/hnw/signup/:method" element={<HnwVerifyDetail />} />
+        <Route path="/welcome/hnw/ready" element={<HnwReady />} />
         <Route path="/welcome/hnw/sector" element={<HnwSectorSelect />} />
         <Route path="/institution/search" element={<CompanySearch />} />
         <Route path="/gp/dashboard" element={<GPDashboard />} />

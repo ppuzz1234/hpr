@@ -7,7 +7,7 @@ export default function HnwAbout() {
   return (
     <div className="onb scroll">
       <div className="onb-inner">
-        <button className="onb-back" onClick={() => navigate("/welcome/hnw")}>‹ 뒤로</button>
+        <button className="onb-back" onClick={() => navigate("/welcome/hnw/intro", { state: { scrollBottom: true } })}>‹ 뒤로</button>
 
         <header className="cs-head">
           <div className="view-eyebrow">INDIVIDUAL · 개인투자자 자격</div>
