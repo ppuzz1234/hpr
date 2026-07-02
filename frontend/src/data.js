@@ -339,6 +339,32 @@ export const DB = {
         { when: "3일 전", text: "OpenAI가 신모델을 출시했어요. 주간 활성 사용자가 5억 명을 넘었습니다.", tone: "up" },
         { when: "2주 전", text: "직전 라운드 대비 SPV 평가가치가 소폭 상향 조정되었습니다.", tone: "up" },
       ],
+      /* 2026-07 기준 공개 보도 인용 (CNBC·TechCrunch·OpenAI 공식 발표 등) */
+      analysis: {
+        investors: [
+          { name: "아마존 (Amazon)", role: "리드", detail: "시리즈G에 $500억 출자, 첫 투자 참여" },
+          { name: "소프트뱅크 (SoftBank)", role: "리드", detail: "$300억 출자, 라운드 공동 주도" },
+          { name: "NVIDIA", role: "리드", detail: "$300억 출자, 전략적 파트너십 병행" },
+          { name: "마이크로소프트 · a16z 외", role: "참여", detail: "D.E. Shaw, MGX, TPG, T. Rowe Price 등 기존·신규 투자자 다수 참여" },
+        ],
+        financials: [
+          { label: "기업가치(포스트머니)", value: "$8,520억", delta: "2026.03 시리즈G 완료 기준" },
+          { label: "연환산 매출(ARR)", value: "$240억", delta: "2026 Q1 기준" },
+          { label: "월 매출", value: "$20억", delta: "2026년 기준" },
+          { label: "연간 현금소진(전망)", value: "$270억", delta: "2027년엔 약 $630억까지 확대 전망" },
+        ],
+        risks: [
+          { title: "안전성 관련 소송", detail: "플로리다 주정부가 아동 안전 고지 미흡 등을 이유로 OpenAI·CEO를 상대로 소송 제기 (2026.06)" },
+          { title: "저작권 소송 병합", detail: "작가·언론사 등이 제기한 저작권 소송 12건이 다중지구소송(MDL)으로 병합" },
+          { title: "데이터 프라이버시 소송", detail: "ChatGPT 대화 데이터를 구글·메타로 무단 전송했다는 집단소송 제기 (2026.05)" },
+          { title: "수익성 확보 지연", detail: "현금 소진 속도가 매출 성장보다 빨라 2030년 전까지는 흑자전환이 어려울 것으로 전망" },
+        ],
+        news: [
+          { when: "2026.07", text: "GPT-5.6(Sol·Terra·Luna) 모델 패밀리 발표, 일부 파트너 대상 프리뷰 시작" },
+          { when: "2026.06", text: "SEC에 비공개로 IPO 신청서 제출, 목표 밸류에이션 $1조 이상 거론" },
+          { when: "2026.03", text: "$1,220억 규모 시리즈G 완료, 포스트머니 밸류에이션 $8,520억 기록" },
+        ],
+      },
     },
     {
       id: "anthropic", name: "Anthropic", tag: "AI · Series F", sector: "인공지능", sectorCat: "ai",
@@ -360,6 +386,32 @@ export const DB = {
         { when: "5일 전", text: "Anthropic이 Claude 신규 모델을 출시했어요. 기업용 계약이 크게 늘었습니다.", tone: "up" },
         { when: "3주 전", text: "신규 투자 라운드 참여 수요가 몰려 배정 물량이 조기 마감됐어요.", tone: "up" },
       ],
+      /* 2026-07 기준 공개 보도 인용 (CNBC·Forbes·Anthropic 공식 발표 등) */
+      analysis: {
+        investors: [
+          { name: "ICONIQ", role: "리드", detail: "시리즈F($130억) 주도" },
+          { name: "Fidelity · Lightspeed", role: "공동 리드", detail: "시리즈F 공동 주도" },
+          { name: "GIC · 카타르투자청 · 블랙록 등", role: "참여", detail: "Coatue, General Atlantic, TPG, T. Rowe Price 등 다수 기관 참여" },
+          { name: "마이크로소프트 · NVIDIA", role: "전략적 투자", detail: "2026.01 대규모 후속 라운드 협의 참여" },
+        ],
+        financials: [
+          { label: "기업가치(포스트머니)", value: "$9,650억", delta: "2026.06 IPO 비공개 신청 기준" },
+          { label: "연환산 매출(ARR)", value: "$470억", delta: "2026.05 말 기준" },
+          { label: "2026 Q2 매출(전망)", value: "$109억", delta: "전분기 대비 +127%" },
+          { label: "흑자전환 시점", value: "2026년 6월", delta: "최초 분기 흑자 달성 전망" },
+        ],
+        risks: [
+          { title: "국방부(펜타곤) 분쟁", detail: "'공급망 리스크' 지정에 반발해 국방부 상대 소송 제기, 예비적 금지명령 인용 (2026.03)" },
+          { title: "저작권 소송 합의", detail: "Bartz v. Anthropic 저작권 집단소송 15억 달러 합의가 최종 청구 단계 진행 중" },
+          { title: "신규 저작권 소송", detail: "유니버설·콩코드·BMG 등 음악 출판사들이 30억 달러 규모 소송 제기" },
+          { title: "수출통제·지정학 리스크", detail: "고성능 모델(Fable/Mythos)에 대한 美 수출통제가 부과·해제를 반복" },
+        ],
+        news: [
+          { when: "2026.07", text: "Claude Sonnet 5 출시 — 코딩·에이전트 성능 강화, 100만 토큰 컨텍스트 지원" },
+          { when: "2026.07", text: "美 수출통제 해제로 Claude Fable 5·Mythos 5 재배포" },
+          { when: "2026.06", text: "SEC에 비공개 IPO 신청, 밸류에이션 $9,650억 거론" },
+        ],
+      },
     },
     /* 아래 3개 종목은 EquityZen 등 세컨더리 마켓 대표 프리IPO 기업.
        기업가치·라운드는 공개 보도(2026-07 기준) 인용, accent는 각 기업 BI 컬러.

@@ -72,13 +72,15 @@ function DetailStage({ deal, holding, onStructure, onSimulate }) {
 
       <div className="row" style={{ gap: 6, marginBottom: 18 }}>
         <span className="led a" />
-        <span className="tiny">{deal.name} 주식을 직접 보유하는 게 아니라, SPV 지분을 취득하는 구조예요</span>
+        <span className="tiny">{deal.name} 주식을 보유하고 있는 특수목적법인(SPV)을 통해 투자하는 구조예요</span>
       </div>
 
-      <div className="grid g-2">
+      <div className="deal-value-row">
         <div className="metric"><div className="label">기업가치</div><div className="value">{won(deal.valuation)}</div></div>
         <div className="metric"><div className="label">최소 투자금</div><div className="value mint">{manwon(deal.minInvest)}</div></div>
       </div>
+
+      <AnalysisSection deal={deal} />
 
       {holding && (
         <div className="card mt-16">
@@ -101,6 +103,81 @@ function DetailStage({ deal, holding, onStructure, onSimulate }) {
         </>
       )}
     </>
+  );
+}
+
+/* 기업 분석 4개 영역 — 아코디언(기본 접힘)으로 각 카테고리별 N개 자료를 모바일에서 편하게 훑어보게 한다.
+   deal.analysis가 없는 딜(아직 리서치 전)은 "준비 중"으로 표시한다. */
+const ANALYSIS_CATS = [
+  { key: "investors", label: "기존 투자자 현황", icon: "🤝" },
+  { key: "financials", label: "기업 재무 분석", icon: "📊" },
+  { key: "risks", label: "리스크 관리", icon: "⚠️" },
+  { key: "news", label: "관련 뉴스", icon: "📰" },
+];
+
+function AnalysisSection({ deal }) {
+  const [openKey, setOpenKey] = useState("investors");
+  const toggle = (k) => setOpenKey((cur) => (cur === k ? null : k));
+  const analysis = deal.analysis;
+
+  return (
+    <div className="card mt-16 analysis-card">
+      {ANALYSIS_CATS.map((c) => {
+        const items = analysis && analysis[c.key];
+        const isOpen = openKey === c.key;
+        return (
+          <div className="analysis-sec" key={c.key}>
+            <button className="analysis-head" onClick={() => toggle(c.key)}>
+              <span className="analysis-ic">{c.icon}</span>
+              <span className="analysis-lb">{c.label}</span>
+              <span className="analysis-count">{items ? `${items.length}건` : "준비중"}</span>
+              <span className={"analysis-caret" + (isOpen ? " open" : "")}><Chevron dir="right" size={12} /></span>
+            </button>
+
+            <div className={"analysis-collapse" + (isOpen ? " open" : "")}>
+              <div className="analysis-collapse-inner">
+                <div className="analysis-body">
+                  {!items && <p className="tiny muted">아직 데이터를 준비 중이에요.</p>}
+
+                  {items && c.key === "investors" && items.map((it, j) => (
+                    <div className="analysis-row" key={j}>
+                      <div className="row between"><b>{it.name}</b><span className="card-tag">{it.role}</span></div>
+                      <p className="tiny mt-4">{it.detail}</p>
+                    </div>
+                  ))}
+
+                  {items && c.key === "financials" && (
+                    <div className="analysis-fin-grid">
+                      {items.map((it, j) => (
+                        <div className="metric" key={j}>
+                          <div className="label">{it.label}</div>
+                          <div className="value" style={{ fontSize: 16 }}>{it.value}</div>
+                          <p className="tiny mt-4">{it.delta}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {items && c.key === "risks" && items.map((it, j) => (
+                    <div className="analysis-row" key={j}>
+                      <b style={{ color: "var(--red)" }}>{it.title}</b>
+                      <p className="tiny mt-4">{it.detail}</p>
+                    </div>
+                  ))}
+
+                  {items && c.key === "news" && items.map((it, j) => (
+                    <div className="analysis-row" key={j}>
+                      <span className="tiny" style={{ color: "var(--mint)", fontWeight: 700 }}>{it.when}</span>
+                      <p className="tiny mt-4">{it.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -272,16 +349,16 @@ function VideoCallStage({ deal, onNext }) {
       </div>
 
       <div className="card mt-16">
-        <label style={{ display: "flex", gap: 8, alignItems: "flex-start", cursor: "pointer" }}>
-          <input type="checkbox" checked={c1} onChange={() => setC1((v) => !v)} style={{ marginTop: 2 }} />
-          <span className="muted" style={{ fontSize: 12.5 }}>
+        <label className="check-row">
+          <CheckBox checked={c1} onChange={() => setC1((v) => !v)} />
+          <span className="check-label">
             고객님의 <b style={{ color: "var(--mint)" }}>특정금전신탁</b>을 활용하여, {deal.name} 주식을 보유하고 있는{" "}
             <b style={{ color: "var(--mint)" }}>특수목적법인(SPV)</b>에 투자한다는 것을 이해했어요
           </span>
         </label>
-        <label style={{ display: "flex", gap: 8, alignItems: "flex-start", cursor: "pointer", marginTop: 12 }}>
-          <input type="checkbox" checked={c2} onChange={() => setC2((v) => !v)} style={{ marginTop: 2 }} />
-          <span className="muted" style={{ fontSize: 12.5 }}>투자금 전액 손실 가능성을 포함한 투자 위험을 설명받았어요</span>
+        <label className="check-row" style={{ marginTop: 14 }}>
+          <CheckBox checked={c2} onChange={() => setC2((v) => !v)} />
+          <span className="check-label">투자금 전액 손실 가능성을 포함한 투자 위험을 설명받았어요</span>
         </label>
       </div>
 
@@ -294,6 +371,20 @@ function VideoCallStage({ deal, onNext }) {
         {ready ? "확인 완료, 서명하러 가기" : "두 항목 모두 확인해주세요"}
       </button>
     </>
+  );
+}
+
+/* 새로 디자인한 체크박스 — 네이티브 input은 접근성/키보드 조작을 위해 유지하고 시각적으로만 감춘다 */
+function CheckBox({ checked, onChange }) {
+  return (
+    <span className="check-box-wrap">
+      <input type="checkbox" className="check-input" checked={checked} onChange={onChange} />
+      <span className="check-box">
+        <svg className="check-ico" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 12.5l4.5 4.5L19 7" />
+        </svg>
+      </span>
+    </span>
   );
 }
 
