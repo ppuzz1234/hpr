@@ -883,12 +883,12 @@ input[type=range]::-moz-range-thumb {
   display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* 직전 라운드 단가 대비 등락 — 상승 붉은색 / 하락 파란색 */
-.deal-change { display: flex; align-items: baseline; justify-content: space-between; margin-top: 12px; }
-.deal-change .lbl { font-size: 11.5px; color: var(--txt-3); }
-.deal-change b { font-size: 18px; font-weight: 800; letter-spacing: .2px; }
-.deal-change b.up { color: var(--red); }
-.deal-change b.down { color: var(--blue); }
+/* 기업가치 · 최소 투자금 · 전일비 — 3열 균등 배치로 압축한 지표 행 */
+.deal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.deal-stats .k { font-size: 10px; color: var(--txt-3); }
+.deal-stats .v { font-size: 13.5px; font-weight: 800; margin-top: 3px; letter-spacing: -.1px; }
+.deal-stats .v.up { color: var(--red); }
+.deal-stats .v.down { color: var(--blue); }
 
 /* 모집 약정 진행률 — 위쪽 등락 표시와 분리, 진행률에 따라 색/문구 변화 */
 .deal-raise { margin-top: 14px; }
@@ -901,6 +901,16 @@ input[type=range]::-moz-range-thumb {
 .raise-status.early { color: var(--txt-2); background: var(--panel); }
 .commit-bar.hot i { background: linear-gradient(90deg, var(--amber), var(--red)); }
 .commit-bar.early i { background: var(--txt-3); }
+
+/* 딜 리스트 상단 산업 필터 칩 — 관심 산업 선택 화면과 동일한 분류(DB.hnwSectors) */
+.hnw-filter-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.hnw-filter-chip {
+  flex-shrink: 0; white-space: nowrap; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 20px; padding: 8px 14px; font-size: 12.5px; font-weight: 700; color: var(--txt-2);
+  cursor: pointer; font-family: inherit; transition: .14s;
+}
+.hnw-filter-chip:hover { border-color: var(--mint-dim); color: var(--txt); }
+.hnw-filter-chip.active { background: rgba(var(--mint-rgb),.14); border-color: var(--mint); color: var(--mint); }
 
 /* ============================================================
    Device simulator (route: /device) — iPhone 17 Pro frame

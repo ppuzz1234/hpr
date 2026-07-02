@@ -320,7 +320,7 @@ export const DB = {
      ============================================================ */
   hnwDeals: [
     {
-      id: "openai", name: "OpenAI", tag: "AI · Series G", sector: "인공지능",
+      id: "openai", name: "OpenAI", tag: "AI · Series G", sector: "인공지능", sectorCat: "ai",
       badge: "인기", accent: "var(--mint)", icon: "✨",
       valuation: 3000000, minInvest: 12000, filled: 68, demoReturn: 12.4, roundChange: 146.2,
       desc: "차세대 파운데이션 모델을 개발하는 AI 리서치·제품 기업. 후속 라운드(Series G) 참여 물량을 SPV로 재분할합니다.",
@@ -340,7 +340,7 @@ export const DB = {
       ],
     },
     {
-      id: "anthropic", name: "Anthropic", tag: "AI · Series F", sector: "인공지능",
+      id: "anthropic", name: "Anthropic", tag: "AI · Series F", sector: "인공지능", sectorCat: "ai",
       badge: "신규", accent: "var(--violet)", icon: "🧠",
       valuation: 1830000, minInvest: 15000, filled: 55, demoReturn: 8.1, roundChange: 92.7,
       desc: "안전성 중심의 AI 모델 Claude를 개발하는 AI 리서치 기업. 최신 라운드(Series F) 참여 물량을 SPV로 재분할합니다.",
@@ -365,7 +365,7 @@ export const DB = {
        - Databricks: 2026-02 라운드 $134B (직전 Series K $100B 대비 +34%) — CNBC
        - Anduril:    2026-05 Series H $61B (직전 $30.5B 대비 2배) — TechCrunch/CNBC */
     {
-      id: "stripe", name: "Stripe", tag: "핀테크 · Secondary", sector: "핀테크·결제",
+      id: "stripe", name: "Stripe", tag: "핀테크 · Secondary", sector: "핀테크·결제", sectorCat: "fintech",
       badge: "인기", accent: "#635BFF", icon: "💳",
       valuation: 1590000, minInvest: 18000, filled: 72, demoReturn: 9.8, roundChange: 73.8,
       desc: "온라인 결제 인프라를 제공하는 글로벌 핀테크. 2026년 2월 임직원 대상 테너오퍼에서 $159B(약 159조원) 가치로 평가된 세컨더리 물량을 SPV로 재분할합니다.",
@@ -385,7 +385,7 @@ export const DB = {
       ],
     },
     {
-      id: "databricks", name: "Databricks", tag: "데이터·AI · Series K", sector: "데이터·AI 플랫폼",
+      id: "databricks", name: "Databricks", tag: "데이터·AI · Series K", sector: "데이터·AI 플랫폼", sectorCat: "ai",
       badge: "신규", accent: "#FF3621", icon: "🧱",
       valuation: 1340000, minInvest: 11000, filled: 61, demoReturn: 11.2, roundChange: 34.0,
       desc: "레이크하우스 기반 데이터·AI 플랫폼 기업. 2026년 2월 $5B 규모 펀딩에서 $134B(약 134조원) 가치로 평가된 물량을 SPV로 재분할합니다.",
@@ -405,7 +405,7 @@ export const DB = {
       ],
     },
     {
-      id: "anduril", name: "Anduril", tag: "방위테크 · Series H", sector: "방위산업 테크",
+      id: "anduril", name: "Anduril", tag: "방위테크 · Series H", sector: "방위산업 테크", sectorCat: "robotics",
       badge: "마감임박", accent: "#8792A6", icon: "🛡️",
       valuation: 610000, minInvest: 20000, filled: 44, demoReturn: 7.5, roundChange: 100.0,
       desc: "자율 방위 시스템과 Lattice 플랫폼을 개발하는 방위테크 기업. 2026년 5월 Series H($5B)에서 $61B(약 61조원) 가치로 직전 대비 두 배 평가된 물량을 SPV로 재분할합니다.",
@@ -432,5 +432,17 @@ export const DB = {
     { tag: "매크로", when: "오늘", title: "미 연준 금리 동결 — 비상장 성장주 밸류에이션 영향은?" },
     { tag: "Anthropic", when: "1일 전", title: "Anthropic, 신규 투자 라운드 클로징 임박 소식" },
     { tag: "세컨더리", when: "2일 전", title: "빅테크 세컨더리 거래량 3분기 연속 증가" },
+  ],
+
+  /* 관심 산업 분류 — 온보딩 산업 선택 화면과 딜 리스트 필터가 공유하는 단일 소스.
+     각 hnwDeals 항목의 sectorCat 필드가 이 key와 매칭된다. */
+  hnwSectors: [
+    { key: "ai", icon: "🧠", ko: "AI·빅데이터", en: "AI / Big Data", desc: "기계학습, 자연어 처리, 데이터 분석 솔루션" },
+    { key: "fintech", icon: "🪙", ko: "핀테크·블록체인", en: "Fintech / Blockchain", desc: "금융 기술, 가상자산, 간편결제, 보안" },
+    { key: "commerce", icon: "📦", ko: "커머스·물류", en: "Commerce / Logistics", desc: "이커머스, D2C, 라스트마일 배송, 풀필먼트" },
+    { key: "health", icon: "🧬", ko: "헬스케어·바이오", en: "Healthcare / Bio", desc: "디지털 치료제, 원격의료, 신약 개발 플랫폼" },
+    { key: "edu", icon: "🎓", ko: "에듀테크·HR", en: "Edtech / HR Tech", desc: "온라인 교육 플랫폼, 채용 및 인재 관리 솔루션" },
+    { key: "saas", icon: "☁️", ko: "SaaS·B2B 솔루션", en: "SaaS / B2B", desc: "기업용 업무 협업 툴, 클라우드 인프라" },
+    { key: "robotics", icon: "🤖", ko: "로보틱스·모빌리티", en: "Robotics / Mobility", desc: "자율주행, 드론, 물류 로봇" },
   ],
 };

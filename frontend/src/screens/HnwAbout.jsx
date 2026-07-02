@@ -26,7 +26,7 @@ export default function HnwAbout() {
         </div>
 
         <div className="card mt-16" style={{ background: "var(--panel-2)" }}>
-          <div className="status-line"><span className="led a" />여기서 투자하는 모든 딜은 비상장 기업 주식을 직접 보유하는 것이 아니라, 그 주식을 담은 단일 종목 SPV의 지분입니다.</div>
+          <div className="status-line"><span className="led a" />PLUS Barbell의 가장 고도화된 전문 금융 역량을 활용, 높은 수익률과 합리적 과세가 가능한 투자 전략을 제안드립니다.</div>
         </div>
 
         <button className="btn btn-primary btn-block mt-24" onClick={() => navigate("/welcome/hnw/signup")}>자격 확인하러 가기 →</button>

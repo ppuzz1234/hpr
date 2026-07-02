@@ -42,8 +42,8 @@ function ListStage({ rows, onExit }) {
     <>
       <div className="view-head">
         <div className="view-eyebrow">INDIVIDUAL · 내 포트폴리오</div>
-        <div className="view-title">내 SPV 투자 자산</div>
-        <div className="view-sub">보유 중인 SPV 지분과 최신 소식을 한눈에 확인하세요.</div>
+        <div className="view-title">내 투자 자산</div>
+        <div className="view-sub">보유 중인 투자 지분과 최신 소식을 한눈에 확인하세요.</div>
       </div>
 
       <div className="card glow">
@@ -53,10 +53,10 @@ function ListStage({ rows, onExit }) {
       </div>
 
       {rows.length === 0 ? (
-        <div className="card mt-16"><p className="muted">아직 투자한 SPV가 없습니다. 딜 홈에서 투자할 곳을 찾아보세요.</p></div>
+        <div className="card mt-16"><p className="muted">아직 투자한 내역이 없습니다. 딜 홈에서 투자할 곳을 찾아보세요.</p></div>
       ) : (
         <div className="card mt-16">
-          <div className="card-title">보유 SPV 지분</div>
+          <div className="card-title">내 투자 자산</div>
           {rows.map((r) => (
             <div key={r.idx} className="row between" style={{ padding: "12px 0", borderTop: "1px solid var(--line-soft)" }}>
               <div>
