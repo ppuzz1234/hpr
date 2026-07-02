@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DB } from "../data.js";
 import { won } from "../utils.js";
+import Chevron from "../components/Chevron.jsx";
 
 /* 운용사(GP) 콘솔 — 기본 구조.
    - 내가 판매 중인 펀드 리스트
@@ -23,7 +24,7 @@ export default function GPDashboard() {
   return (
     <div className="onb scroll">
       <div className="onb-inner gp-inner">
-        <button className="onb-back" onClick={() => navigate("/welcome")}>‹ 역할 다시 선택</button>
+        <button className="onb-back" onClick={() => navigate("/welcome")}><Chevron dir="left" /> 역할 다시 선택</button>
 
         <header className="cs-head">
           <div className="view-eyebrow">MANAGER · 운용사 콘솔</div>

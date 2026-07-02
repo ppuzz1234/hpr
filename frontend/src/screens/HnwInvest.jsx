@@ -35,7 +35,7 @@ export default function HnwInvest() {
     <>
       <div className="view-head">
         <div className="view-eyebrow">INDIVIDUAL · 개인투자 딜룸</div>
-        <div className="view-title">지금 모집 중인 투자처</div>
+        <div className="view-title">현재 모집 중인 투자 기회</div>
       </div>
 
       <div className="cs-search">

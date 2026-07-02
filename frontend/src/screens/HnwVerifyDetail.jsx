@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams, Navigate } from "react-router-dom";
+import Chevron from "../components/Chevron.jsx";
 
 /* 전문투자자 자격 확인 — 방법별 세부 화면.
    세 경로 모두 마지막 버튼을 누르면 "인증 완료" 알림을 띄우고 관심 산업 선택 화면으로 이동한다. */
@@ -33,7 +34,7 @@ export default function HnwVerifyDetail() {
       <div className="onb-inner">
         <div className="view-eyebrow">{ROUTE_LABEL[method]}</div>
         <div className="row" style={{ gap: 10, margin: "8px 0 22px" }}>
-          <button className="onb-back" style={{ margin: 0, padding: 0, fontSize: 20 }} onClick={() => navigate("/welcome/hnw/signup")}>‹</button>
+          <button className="onb-back" style={{ margin: 0, padding: 0 }} onClick={() => navigate("/welcome/hnw/signup")}><Chevron dir="left" size={20} /></button>
           <strong style={{ fontSize: 18, fontWeight: 800 }}>{TITLES[method]}</strong>
         </div>
 

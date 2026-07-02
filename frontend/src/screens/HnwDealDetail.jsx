@@ -3,6 +3,11 @@ import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { DB } from "../data.js";
 import { won, manwon } from "../utils.js";
 import { useApp } from "../context/AppContext.jsx";
+import Chevron from "../components/Chevron.jsx";
+import BrandLoadingOverlay from "../components/BrandLoadingOverlay.jsx";
+
+// BrandMark(animated) 로딩 한 사이클 길이(styles.css의 .bm-plate animation-duration)와 맞춘 대기 시간 — 로그인 화면과 동일
+const BRAND_LOOP_MS = 3600;
 
 /* 딜 투자 여정 — 첨부 프로토타입의 단계를 그대로 따르는 위저드.
    상세 → 구조 안내 → 시뮬레이터 → 화상상담 고지 → 화상상담 → 계약서명 → 진행상황
@@ -41,7 +46,7 @@ export default function HnwDealDetail() {
 
   return (
     <>
-      {stage !== "tracking" && <button className="onb-back" onClick={back}>‹ 뒤로</button>}
+      {stage !== "tracking" && <button className="onb-back" onClick={back}><Chevron dir="left" /> 뒤로</button>}
 
       {stage === "detail" && (
         <DetailStage deal={deal} holding={holding} onStructure={() => go("structure")} onSimulate={() => go("simulator")} />
@@ -136,6 +141,8 @@ function DealQA({ deal }) {
 
 /* ---------------- S06 · 투자 구조 안내 ---------------- */
 function StructureStage({ deal, onNext }) {
+  const [showTrustInfo, setShowTrustInfo] = useState(false);
+
   return (
     <>
       <div className="view-head">
@@ -158,6 +165,28 @@ function StructureStage({ deal, onNext }) {
       </div>
 
       <button className="btn btn-primary btn-block mt-16" onClick={onNext}>이해했어요, 계속하기</button>
+
+      <button
+        className="login-alt"
+        style={{ margin: "14px auto 0", display: "block" }}
+        onClick={() => setShowTrustInfo((v) => !v)}
+      >
+        특정금전신탁이란? {showTrustInfo ? "▲" : "▼"}
+      </button>
+
+      {showTrustInfo && (
+        <div className="card mt-12" style={{ background: "var(--panel-2)" }}>
+          <p className="tiny" style={{ color: "var(--txt)" }}>
+            특정금전신탁은 고객(위탁자)이 자금의 운용 대상을 직접 지정하는 신탁이에요. 증권사(수탁자)는 고객이 지정한 대로만 자금을 운용할 수 있고,
+            신탁재산은 증권사의 고유재산과 법적으로 분리·보관돼요.
+          </p>
+          <div className="hnw-verify-steps">
+            <div className="hnw-verify-step"><span>✓</span>고객이 투자 대상(이 딜의 SPV 지분)을 직접 지정해요</div>
+            <div className="hnw-verify-step"><span>✓</span>신탁재산은 증권사 고유재산과 분리되어, 증권사가 파산해도 별도로 보호돼요 (도산격리)</div>
+            <div className="hnw-verify-step"><span>✓</span>자본시장법에 따라 정식으로 감독받는 절차예요</div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
@@ -245,7 +274,10 @@ function VideoCallStage({ deal, onNext }) {
       <div className="card mt-16">
         <label style={{ display: "flex", gap: 8, alignItems: "flex-start", cursor: "pointer" }}>
           <input type="checkbox" checked={c1} onChange={() => setC1((v) => !v)} style={{ marginTop: 2 }} />
-          <span className="muted" style={{ fontSize: 12.5 }}>{deal.name} 주식을 직접 보유하는 게 아니라 SPV 지분을 보유한다는 것을 이해했어요</span>
+          <span className="muted" style={{ fontSize: 12.5 }}>
+            고객님의 <b style={{ color: "var(--mint)" }}>특정금전신탁</b>을 활용하여, {deal.name} 주식을 보유하고 있는{" "}
+            <b style={{ color: "var(--mint)" }}>특수목적법인(SPV)</b>에 투자한다는 것을 이해했어요
+          </span>
         </label>
         <label style={{ display: "flex", gap: 8, alignItems: "flex-start", cursor: "pointer", marginTop: 12 }}>
           <input type="checkbox" checked={c2} onChange={() => setC2((v) => !v)} style={{ marginTop: 2 }} />
@@ -268,6 +300,12 @@ function VideoCallStage({ deal, onNext }) {
 /* ---------------- S10 · 계약 서명 ---------------- */
 function ContractStage({ deal, amt, onConfirm }) {
   const { openModal } = useApp();
+  const [busy, setBusy] = useState(false);
+
+  const handleConfirm = () => {
+    setBusy(true);
+    setTimeout(onConfirm, BRAND_LOOP_MS);
+  };
 
   return (
     <>
@@ -300,7 +338,9 @@ function ContractStage({ deal, amt, onConfirm }) {
         </div>
       </button>
 
-      <button className="btn btn-primary btn-block mt-16" onClick={onConfirm}>서명하고 투자 완료하기</button>
+      <button className="btn btn-primary btn-block mt-16" onClick={handleConfirm} disabled={busy}>서명하고 투자 완료하기</button>
+
+      {busy && <BrandLoadingOverlay label="투자 체결 중…" />}
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Chevron from "../components/Chevron.jsx";
 
 /* 전문투자자 자격 확인 방법 선택 — 세 가지 경로 모두 결국 본인인증(영상통화)으로 귀결된다 */
 const OPTIONS = [
@@ -28,7 +29,7 @@ export default function HnwSignup() {
   return (
     <div className="onb scroll">
       <div className="onb-inner">
-        <button className="onb-back" onClick={() => navigate("/welcome/hnw")}>‹ 뒤로</button>
+        <button className="onb-back" onClick={() => navigate("/welcome/hnw")}><Chevron dir="left" /> 뒤로</button>
 
         <header className="view-head">
           <div className="view-eyebrow">INDIVIDUAL · 전문투자자 자격 확인</div>

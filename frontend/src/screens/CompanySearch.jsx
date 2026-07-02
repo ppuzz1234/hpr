@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { companyDirectory } from "../data.js";
 import { useApp } from "../context/AppContext.jsx";
+import Chevron from "../components/Chevron.jsx";
 
 /* 기관 투자자 — 기업 검색.
    회사명 또는 사업자등록번호로 검색 → 선택 시 진단 프로필 등록 후 Home 진입.
@@ -32,7 +33,7 @@ export default function CompanySearch() {
   return (
     <div className="onb scroll">
       <div className="onb-inner">
-        <button className="onb-back" onClick={() => navigate("/welcome")}>‹ 역할 다시 선택</button>
+        <button className="onb-back" onClick={() => navigate("/welcome")}><Chevron dir="left" /> 역할 다시 선택</button>
 
         <header className="cs-head">
           <div className="view-eyebrow">INSTITUTION · 기관 투자자</div>

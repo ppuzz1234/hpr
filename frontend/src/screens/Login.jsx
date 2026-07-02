@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
 import { loginWithNaver } from "../auth/naver.js";
 import BrandMark from "../components/BrandMark.jsx";
+import BrandLoadingOverlay from "../components/BrandLoadingOverlay.jsx";
 
 // BrandMark(animated) 로딩 한 사이클 길이(styles.css의 .bm-plate animation-duration)와 맞춰,
 // 인증 중 오버레이가 최소 1회전을 다 보여줄 때까지는 사라지지 않도록 한다.
@@ -108,12 +109,7 @@ export default function Login() {
         </button>
       </div>
 
-      {busy && (
-        <div className="auth-loading-overlay">
-          <BrandMark animated size={64} />
-          <span className="auth-loading-txt">인증 중…</span>
-        </div>
-      )}
+      {busy && <BrandLoadingOverlay label="인증 중…" />}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import BrandMark from "../components/BrandMark.jsx";
+import Chevron from "../components/Chevron.jsx";
 
 /* 로그인 직후 노출되는 스크롤 기반 에디토리얼 스토리텔링 온보딩.
    신탁 → 해외 SPV → 타겟기업으로 이어지는 투자 구조 전체를 스크롤에 맞춰
@@ -12,7 +13,7 @@ const SCENES = [
     icon: "🪪",
     eyebrow: "STEP 1 · 자격 확인",
     title: "가장 먼저,\n전문투자자 자격을 확인해요",
-    body: "당사 전문투자자 등록 여부를 자동으로 확인하고, 미등록 고객은 마이데이터 연동으로 금융자산·소득 증빙을 스크래핑해 1분 만에 심사받을 수 있어요.",
+    body: "당사 전문투자자 등록 여부를 자동으로 확인하고, 미등록 고객은 마이데이터 연동으로 금융자산·소득 증빙을 스크래핑 및 화상삼당으로 심사받을 수 있어요.",
   },
   {
     icon: "🏦",
@@ -82,7 +83,6 @@ export default function HnwStory() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const finish = () => navigate("/welcome/hnw", { replace: true });
   const goVerify = () => navigate("/welcome/hnw/signup");
 
   const nodeActive = [
@@ -98,7 +98,7 @@ export default function HnwStory() {
       <div className="story-visual">
         <div className="story-visual-top">
           <span className="story-brand"><BrandMark size={18} /> PLUS Barbell</span>
-          <button className="story-skip" onClick={finish}>건너뛰기 →</button>
+          <button className="story-skip" onClick={goVerify}>건너뛰기 <Chevron dir="right" size={13} /></button>
         </div>
 
         <div className="story-flow">

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext.jsx";
+import Chevron from "../components/Chevron.jsx";
 
 /* 투자자 하위 분기 — 개인투자(HNW) / 법인투자.
    각 화면은 이후 별도의 로직으로 분화될 예정이라 우선 진입 경로만 분리한다.
@@ -29,7 +30,7 @@ export default function InvestorType() {
   return (
     <div className="onb scroll">
       <div className="onb-inner">
-        <button className="onb-back" onClick={() => navigate("/welcome")}>‹ 역할 다시 선택</button>
+        <button className="onb-back" onClick={() => navigate("/welcome")}><Chevron dir="left" /> 역할 다시 선택</button>
 
         <header className="ut-head">
           <div className="view-eyebrow">INVESTOR · 투자자</div>

@@ -40,7 +40,7 @@ export default function HnwMenu() {
         ))}
       </div>
 
-      <button className="btn btn-line btn-block mt-16" onClick={reset}>역할 변경</button>
+      {/* <button className="btn btn-line btn-block mt-16" onClick={reset}>역할 변경</button> */}
     </>
   );
 }

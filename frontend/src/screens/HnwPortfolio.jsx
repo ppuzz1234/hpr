@@ -3,6 +3,7 @@ import { DB } from "../data.js";
 import { manwon } from "../utils.js";
 import { useApp } from "../context/AppContext.jsx";
 import { Area } from "../components/Charts.jsx";
+import Chevron from "../components/Chevron.jsx";
 
 /* 포트폴리오 여정 — 첨부 프로토타입 순서 그대로: 목록 → 매도 비교 → 세금 정리.
    각 단계는 별도 라우트가 아니라 이 화면 안의 내부 스테이지로 관리한다. */
@@ -96,7 +97,7 @@ function ExitStage({ r, onBack, onNext }) {
 
   return (
     <>
-      <button className="onb-back" onClick={onBack}>‹ 뒤로</button>
+      <button className="onb-back" onClick={onBack}><Chevron dir="left" /> 뒤로</button>
 
       <div className="view-head">
         <div className="view-eyebrow">SPV 지분 매도 · {r.deal.name}</div>

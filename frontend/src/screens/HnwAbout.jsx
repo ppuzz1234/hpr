@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Chevron from "../components/Chevron.jsx";
 
 /* 개인투자(HNW) 자격 안내 — 전문투자자 요건 설명 */
 export default function HnwAbout() {
@@ -7,7 +8,7 @@ export default function HnwAbout() {
   return (
     <div className="onb scroll">
       <div className="onb-inner">
-        <button className="onb-back" onClick={() => navigate("/welcome/hnw/intro", { state: { scrollBottom: true } })}>‹ 뒤로</button>
+        <button className="onb-back" onClick={() => navigate("/welcome/hnw/intro", { state: { scrollBottom: true } })}><Chevron dir="left" /> 뒤로</button>
 
         <header className="cs-head">
           <div className="view-eyebrow">INDIVIDUAL · 개인투자자 자격</div>

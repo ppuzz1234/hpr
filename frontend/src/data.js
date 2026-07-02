@@ -325,8 +325,9 @@ export const DB = {
       valuation: 3000000, minInvest: 12000, filled: 68, demoReturn: 12.4, roundChange: 146.2,
       desc: "차세대 파운데이션 모델을 개발하는 AI 리서치·제품 기업. 후속 라운드(Series G) 참여 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Barbell SPV에 투자금을 맡겨요",
-        "SPV가 OpenAI 세컨더리 지분을 매입해요",
+        "고객님이 증권사에서 특정금전신탁 계좌를 개설해요",
+        "신탁계좌 대금이 환전되어 SPV로 이체돼요",
+        "SPV가 OpenAI 기업 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
       qa: {
@@ -345,8 +346,9 @@ export const DB = {
       valuation: 1830000, minInvest: 15000, filled: 55, demoReturn: 8.1, roundChange: 92.7,
       desc: "안전성 중심의 AI 모델 Claude를 개발하는 AI 리서치 기업. 최신 라운드(Series F) 참여 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Barbell SPV에 투자금을 맡겨요",
-        "SPV가 Anthropic 세컨더리 지분을 매입해요",
+        "고객님이 증권사에서 특정금전신탁 계좌를 개설해요",
+        "신탁계좌 대금이 환전되어 SPV로 이체돼요",
+        "SPV가 Anthropic 기업 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
       qa: {
@@ -370,8 +372,9 @@ export const DB = {
       valuation: 1590000, minInvest: 18000, filled: 72, demoReturn: 9.8, roundChange: 73.8,
       desc: "온라인 결제 인프라를 제공하는 글로벌 핀테크. 2026년 2월 임직원 대상 테너오퍼에서 $159B(약 159조원) 가치로 평가된 세컨더리 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Barbell SPV에 투자금을 맡겨요",
-        "SPV가 Stripe 세컨더리 지분을 매입해요",
+        "고객님이 증권사에서 특정금전신탁 계좌를 개설해요",
+        "신탁계좌 대금이 환전되어 SPV로 이체돼요",
+        "SPV가 Stripe 기업 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
       qa: {
@@ -390,8 +393,9 @@ export const DB = {
       valuation: 1340000, minInvest: 11000, filled: 61, demoReturn: 11.2, roundChange: 34.0,
       desc: "레이크하우스 기반 데이터·AI 플랫폼 기업. 2026년 2월 $5B 규모 펀딩에서 $134B(약 134조원) 가치로 평가된 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Barbell SPV에 투자금을 맡겨요",
-        "SPV가 Databricks 세컨더리 지분을 매입해요",
+        "고객님이 증권사에서 특정금전신탁 계좌를 개설해요",
+        "신탁계좌 대금이 환전되어 SPV로 이체돼요",
+        "SPV가 Databricks 기업 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
       qa: {
@@ -410,8 +414,9 @@ export const DB = {
       valuation: 610000, minInvest: 20000, filled: 44, demoReturn: 7.5, roundChange: 100.0,
       desc: "자율 방위 시스템과 Lattice 플랫폼을 개발하는 방위테크 기업. 2026년 5월 Series H($5B)에서 $61B(약 61조원) 가치로 직전 대비 두 배 평가된 물량을 SPV로 재분할합니다.",
       structureSteps: [
-        "고객님이 Barbell SPV에 투자금을 맡겨요",
-        "SPV가 Anduril 세컨더리 지분을 매입해요",
+        "고객님이 증권사에서 특정금전신탁 계좌를 개설해요",
+        "신탁계좌 대금이 환전되어 SPV로 이체돼요",
+        "SPV가 Anduril 기업 지분을 매입해요",
         "고객님은 SPV 지분을 비율대로 보유해요",
       ],
       qa: {

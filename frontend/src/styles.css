@@ -16,6 +16,9 @@
   --blue:      #3B82F6;
   --violet:    #8B7CF6;
   --amber:     #F4B740;
+  --amber-rgb: 244,183,64;
+  --amber-bright:     #FFA724;
+  --amber-bright-rgb: 255,167,36;
   --red:       #FF6B6B;
   --green:     #46D39A;
 
@@ -45,6 +48,9 @@
   --blue:      #1C5BA8;
   --violet:    #6D5BD0;
   --amber:     #9A6A12;
+  --amber-rgb: 154,106,18;
+  --amber-bright:     #F59A00;
+  --amber-bright-rgb: 245,154,0;
   --red:       #B0392B;
   --green:     #1E7A4C;
 
@@ -374,7 +380,14 @@ input[type=range]::-moz-range-thumb {
 .build-step:last-child { border-bottom: none; }
 .build-step .no { width: 28px; height: 28px; border-radius: 50%; background: var(--panel-2); border: 1px solid var(--line); display: grid; place-items: center; font-size: 12px; font-weight: 700; flex-shrink: 0; color: var(--txt-2); }
 .build-step.done .no { background: var(--mint); border-color: var(--mint); color: var(--on-accent); }
-.build-step.active .no { background: var(--amber); border-color: var(--amber); color: #2a1c02; }
+.build-step.active .no {
+  background: var(--amber-bright); border-color: var(--amber-bright); color: #241300;
+  animation: stepPulse 1.8s ease-in-out infinite;
+}
+@keyframes stepPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--amber-bright-rgb), .55); }
+  50% { box-shadow: 0 0 0 7px rgba(var(--amber-bright-rgb), 0); }
+}
 .build-step h5 { font-size: 13.5px; }
 .build-step p { font-size: 12px; color: var(--txt-2); margin-top: 4px; line-height: 1.55; }
 .build-step .meta { font-size: 11px; color: var(--txt-3); margin-top: 6px; }
@@ -443,14 +456,14 @@ input[type=range]::-moz-range-thumb {
 .modal h3 { font-size: 20px; font-weight: 800; }
 .modal .close { position: absolute; top: 18px; right: 20px; background: none; border: none; color: var(--txt-3); font-size: 22px; cursor: pointer; }
 
-/* 인증 진행 중 화면 정중앙에 뜨는 플로팅 로딩 — BrandMark(animated)를 그대로 사용 */
-.auth-loading-overlay {
-  position: fixed; inset: 0; z-index: 400;
+/* 진행 중 화면 정중앙에 뜨는 플로팅 로딩 — BrandMark(animated)를 그대로 사용, document.body에 포탈로 붙어 항상 최상위 레이어 */
+.brand-loading-overlay {
+  position: fixed; inset: 0; z-index: 5000;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
   background: rgba(6,9,12,.55); backdrop-filter: blur(6px);
   color: var(--mint); animation: fadeUp .25s ease;
 }
-.auth-loading-txt { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .3px; }
+.brand-loading-txt { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .3px; }
 
 /* misc */
 .mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; }
@@ -630,7 +643,8 @@ input[type=range]::-moz-range-thumb {
 .onb-input::placeholder { color: var(--txt-3); }
 .onb-input:focus { border-color: var(--mint); box-shadow: 0 0 0 3px rgba(var(--mint-rgb),.12); }
 .onb-back {
-  background: none; border: none; color: var(--txt-3); font-size: 13px; font-family: inherit;
+  display: inline-flex; align-items: center; gap: 3px;
+  background: none; border: none; color: var(--txt-3); font-size: 15px; font-weight: 600; font-family: inherit;
   cursor: pointer; padding: 4px 0; margin-bottom: 18px;
 }
 .onb-back:hover { color: var(--txt); }
@@ -651,7 +665,11 @@ input[type=range]::-moz-range-thumb {
   display: flex; align-items: center; justify-content: space-between;
 }
 .story-brand { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 800; color: var(--txt); }
-.story-skip { background: none; border: none; font-family: inherit; font-size: 12px; color: var(--txt-3); cursor: pointer; padding: 4px 0; }
+.story-skip {
+  display: inline-flex; align-items: center; gap: 3px;
+  background: none; border: none; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--txt-3);
+  cursor: pointer; padding: 4px 0;
+}
 .story-skip:hover { color: var(--txt); }
 
 .story-flow { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
