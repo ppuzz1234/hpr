@@ -8,34 +8,39 @@ import Chevron from "../components/Chevron.jsx";
 /* 포트폴리오 여정 — 첨부 프로토타입 순서 그대로: 목록 → 매도 비교 → 세금 정리.
    각 단계는 별도 라우트가 아니라 이 화면 안의 내부 스테이지로 관리한다. */
 export default function HnwPortfolio() {
-  const { hnwHoldings, exitHolding, toast } = useApp();
-  const [stage, setStage] = useState("list"); // list | exit | tax
-  const [target, setTarget] = useState(null);
+  const { hnwHoldings } = useApp();
+
+  // 매도 기능 — 우선 주석 처리하고 대신 보유 종목별 사업현황/재무현황/Values 정보를 노출한다.
+  // 재활성화 시 아래 상태/함수와 ExitStage·TaxStage 렌더 분기를 다시 연결하면 된다.
+  // const { exitHolding, toast } = useApp();
+  // const [stage, setStage] = useState("list"); // list | exit | tax
+  // const [target, setTarget] = useState(null);
 
   const rows = hnwHoldings
     .map((h, idx) => ({ ...h, idx, deal: DB.hnwDeals.find((d) => d.id === h.dealId) }))
     .filter((r) => r.deal);
 
-  const startExit = (r) => { setTarget(r); setStage("exit"); };
-  const finishExit = () => {
-    exitHolding(target.idx);
-    toast({ title: "매도 신청 접수", icon: "✓", body: `${target.deal.name} SPV 지분 매도 신청이 접수되었습니다.` });
-    setTarget(null);
-    setStage("list");
-  };
+  // const startExit = (r) => { setTarget(r); setStage("exit"); };
+  // const finishExit = () => {
+  //   exitHolding(target.idx);
+  //   toast({ title: "매도 신청 접수", icon: "✓", body: `${target.deal.name} SPV 지분 매도 신청이 접수되었습니다.` });
+  //   setTarget(null);
+  //   setStage("list");
+  // };
 
-  if (stage === "exit" && target) {
-    return <ExitStage r={target} onBack={() => { setTarget(null); setStage("list"); }} onNext={() => setStage("tax")} />;
-  }
-  if (stage === "tax" && target) {
-    return <TaxStage r={target} onDone={finishExit} />;
-  }
+  // if (stage === "exit" && target) {
+  //   return <ExitStage r={target} onBack={() => { setTarget(null); setStage("list"); }} onNext={() => setStage("tax")} />;
+  // }
+  // if (stage === "tax" && target) {
+  //   return <TaxStage r={target} onDone={finishExit} />;
+  // }
 
-  return <ListStage rows={rows} onExit={startExit} />;
+  return <ListStage rows={rows} />;
 }
 
 /* ---------------- S12 · 포트폴리오 목록 ---------------- */
-function ListStage({ rows, onExit }) {
+function ListStage({ rows }) {
+  const [openIdx, setOpenIdx] = useState(null);
   const total = rows.reduce((s, r) => s + r.amount, 0);
   const feed = rows.flatMap((r) => r.deal.history.map((h) => ({ ...h, dealName: r.deal.name })));
 
@@ -56,22 +61,75 @@ function ListStage({ rows, onExit }) {
       {rows.length === 0 ? (
         <div className="card mt-16"><p className="muted">아직 투자한 내역이 없습니다. 딜 홈에서 투자할 곳을 찾아보세요.</p></div>
       ) : (
-        <div className="card mt-16">
-          <div className="card-title">내 투자 자산</div>
-          {rows.map((r) => (
-            <div key={r.idx} className="row between" style={{ padding: "12px 0", borderTop: "1px solid var(--line-soft)" }}>
-              <div>
-                <strong style={{ fontSize: 13.5 }}>{r.deal.name}</strong>
-                <div className="tiny">{manwon(r.amount)} 투자</div>
+        <div className="card mt-16 analysis-card">
+          <div className="card-title" style={{ padding: "10px 16px 0" }}>내 투자 자산</div>
+          {rows.map((r) => {
+            const isOpen = openIdx === r.idx;
+            const analysis = r.deal.analysis;
+            const current = Math.round(r.amount * (1 + r.deal.demoReturn / 100));
+            const gain = current - r.amount;
+            const up = r.deal.demoReturn >= 0;
+
+            return (
+              <div key={r.idx} className="analysis-sec">
+                <button className="analysis-head" onClick={() => setOpenIdx(isOpen ? null : r.idx)}>
+                  <span style={{ flex: 1, textAlign: "left" }}>
+                    <strong style={{ fontSize: 13.5 }}>{r.deal.name}</strong>
+                    <div className="tiny">{manwon(r.amount)} 투자</div>
+                  </span>
+                  <span style={{ color: up ? "var(--green)" : "var(--red)", fontWeight: 700, fontSize: 13 }}>
+                    {up ? "+" : ""}{r.deal.demoReturn}%
+                  </span>
+                  <span className={"analysis-caret" + (isOpen ? " open" : "")}><Chevron dir="right" size={12} /></span>
+                </button>
+
+                <div className={"analysis-collapse" + (isOpen ? " open" : "")}>
+                  <div className="analysis-collapse-inner">
+                    <div className="analysis-body">
+                      <div className="analysis-row">
+                        <b>📌 사업 현황</b>
+                        {analysis?.news ? (
+                          analysis.news.slice(0, 3).map((n, i) => (
+                            <p className="tiny mt-4" key={i}><span style={{ color: "var(--mint)", fontWeight: 700 }}>{n.when}</span> · {n.text}</p>
+                          ))
+                        ) : (
+                          <p className="tiny mt-4 muted">국내외 사업·뉴스 정보를 준비 중이에요.</p>
+                        )}
+                      </div>
+
+                      <div className="analysis-row">
+                        <b>📊 재무 현황</b>
+                        {analysis?.financials ? (
+                          analysis.financials.slice(0, 3).map((f, i) => (
+                            <div className="row between mt-4" key={i}>
+                              <span className="tiny">{f.label}</span>
+                              <span className="tiny" style={{ fontWeight: 700 }}>{f.value}</span>
+                            </div>
+                          ))
+                        ) : (
+                          <p className="tiny mt-4 muted">분기·반기 재무 리포트를 준비 중이에요.</p>
+                        )}
+                      </div>
+
+                      <div className="analysis-row">
+                        <b>💹 Values</b>
+                        <div className="row between mt-4">
+                          <span className="tiny">내 투자금</span>
+                          <span className="tiny" style={{ fontWeight: 700 }}>{manwon(r.amount)}</span>
+                        </div>
+                        <div className="row between mt-4">
+                          <span className="tiny">최근 라운드 기준 평가액</span>
+                          <span className="tiny" style={{ color: up ? "var(--green)" : "var(--red)", fontWeight: 700 }}>
+                            {manwon(current)} ({up ? "+" : ""}{manwon(gain)})
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
-                <span style={{ color: r.deal.demoReturn >= 0 ? "var(--green)" : "var(--red)", fontWeight: 700 }}>
-                  {r.deal.demoReturn >= 0 ? "+" : ""}{r.deal.demoReturn}%
-                </span>
-                <button className="btn btn-line btn-sm" onClick={() => onExit(r)}>매도</button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
